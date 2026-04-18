@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  font-family: 'Press Start 2P', monospace;
+  background: linear-gradient(135deg, #0b0f2f, #1a0b3d, #0a1b3f);
+  color: #caa6ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* main card */
+.container {
+  background: rgba(20, 10, 50, 0.85);
+  border: 3px solid #7c4dff;
+  box-shadow: 0 0 20px #7c4dff, 0 0 40px #00e5ff;
+  padding: 30px;
+  width: 350px;
+  text-align: center;
+}
+
+/* inputs */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 2px solid #00e5ff;
+  background: #0b0f2f;
+  color: #fff;
+  font-family: inherit;
+  font-size: 10px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #ff4dff;
+  box-shadow: 0 0 10px #ff4dff;
+}
+
+/* button */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, #7c4dff, #00e5ff);
+  border: none;
+  color: white;
+  font-family: inherit;
+  font-size: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #7c4dff;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #00e5ff;
+}
+
+/* title glow */
+h2 {
+  color: #00e5ff;
+  text-shadow: 0 0 10px #7c4dff, 0 0 20px #00e5ff;
+}
+
+.error-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a0b3d;
+  border: 2px solid #ff4d4d;
+  color: #ff4d4d;
+  padding: 12px 20px;
+  font-size: 10px;
+  box-shadow: 0 0 15px #ff4d4d;
+  z-index: 9999;
+  text-align: center;
+  animation: pop 0.2s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes pop {
+  from {
+    transform: translateX(-50%) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
