@@ -1,4 +1,4 @@
-import { questions } from "./questions.js";
+import { questions } from "./java-questions.js";
 
 console.log("APP LOADED");
 console.log("QUESTIONS:", questions);
