@@ -7,6 +7,19 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  image-rendering: pixelated;
+}
+
+body[data-lang="html"] {
+  background: linear-gradient(#0b0f2f, #1a0b3d);
+}
+
+body[data-lang="css"] {
+  background: linear-gradient(#001b2e, #003a66);
+}
+
+body[data-lang="java"] {
+  background: linear-gradient(#2b0000, #5c0000);
 }
 
 /* main card */
@@ -92,4 +105,41 @@ h2 {
     transform: translateX(-50%) scale(1);
     opacity: 1;
   }
+}
+
+.coin {
+  border-radius: 10px;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #000;
+  font-family: "Press Start 2P", monospace;
+
+  transition: transform 0.1s;
+}
+
+.coin:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.path-canvas {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+  background-size: 40px 40px;
+}
+
+.coin:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  transition: 0.1s;
+}
+
+.mascot {
+  font-size: 40px;
+  filter: drop-shadow(3px 3px 0px #000);
+  animation: walkBob 0.6s infinite alternate;
+}
+
+@keyframes walkBob {
+  from { transform: translate(-50%, -50%) translateY(0); }
+  to   { transform: translate(-50%, -50%) translateY(-4px); }
 }
