@@ -58,12 +58,12 @@ export const pythonQuestions = [
     difficulty: "beginner"
   },
   {
-    "type": "mc",
-    "question": "What is the output of the following code?\n\na = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)",
-    "choices": ["[1, 2, 3]", "[1, 2, 3, 4]", "Error", "None"],
-    "correct": 1,
-    "topic": "basic_python",
-    "difficulty": "beginner"
+    type: "mc",
+    question: "What is the output of the following code?\n\na = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)",
+    choices: ["[1, 2, 3]", "[1, 2, 3, 4]", "Error", "None"],
+    correct: 1,
+    topic: "basic_python",
+    difficulty: "beginner"
   },
 
   // ─────────────────────────────────────────────

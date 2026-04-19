@@ -28,6 +28,7 @@ body[data-lang="java"] {
   border: 3px solid #7c4dff;
   box-shadow: 0 0 20px #7c4dff, 0 0 40px #00e5ff;
   padding: 30px;
+  padding-bottom: 50px;
   width: 350px;
   text-align: center;
 }
@@ -37,6 +38,7 @@ input {
   width: 100%;
   padding: 10px;
   margin: 8px 0;
+  box-sizing: border-box;
   border: 2px solid #00e5ff;
   background: #0b0f2f;
   color: #fff;
@@ -74,6 +76,11 @@ button:hover {
 h2 {
   color: #00e5ff;
   text-shadow: 0 0 10px #7c4dff, 0 0 20px #00e5ff;
+}
+
+hr {
+  margin-top: 24px;
+  border-color: #7c4dff;
 }
 
 .error-popup {
