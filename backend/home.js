@@ -383,33 +383,36 @@ function setLanguage(lang) {
 
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Boot — render immediately with defaults, update when Firebase responds
+// Boot — hide page until Firebase confirms auth, then show
 // ─────────────────────────────────────────────────────────────────────────────
-renderPath({ name: "", avatar: "🦊", completedNodes: [] });
-document.getElementById("topbar").classList.add("visible");
+document.body.style.visibility = "hidden";
 
 observeAuth(async (user) => {
-  if (!user) { window.location.href = "index.html"; return; }
+  if (!user) {
+    window.location.href = "index.html";
+    return;
+  }
 
   const data = await getUserData(user.uid);
 
-  document.getElementById("nav-avatar").textContent   = data.avatar || "🦊";
-  document.getElementById("xp-val").textContent       = data.xp     || 0;
-  document.getElementById("streak-val").textContent   = data.streak || 0;
-  document.getElementById("welcome-avatar").textContent = data.avatar || "🦊";
-  document.getElementById("welcome-name").textContent   = `Hey, ${data.name || "Learner"}!`;
-  const langSelect = document.getElementById("langSelect");
+  // Merge Firebase data into userData so inline script's renderPixelJourney works too
+  userData.name     = data.name   || "PIXEL HERO";
+  userData.avatar   = data.avatar || "🦊";
+  userData.xp       = data.xp     || 0;
+  userData.streak   = data.streak || 0;
+  userData.progress = data.progress || { html: [], python: [], java: [] };
 
-// set dropdown default from user (optional)
-langSelect.value = currentLanguage;
+  document.getElementById("xp-val").innerText        = userData.xp;
+  document.getElementById("streak-val").innerText    = userData.streak;
+  document.getElementById("nav-avatar").innerText    = userData.avatar;
+  document.getElementById("welcomeAvatar").innerText = userData.avatar;
+  document.getElementById("welcomeName").innerHTML   = `👾 ${userData.name} 👾`;
 
-langSelect.addEventListener("change", (e) => {
-  currentLanguage = e.target.value;
-  renderPath(currentUserData);
-});
+  // Re-render with real data
+  if (typeof renderPixelJourney === "function") renderPixelJourney();
 
-  currentUserData = data;
-  renderPath(data);
+  // Now show the page
+  document.body.style.visibility = "visible";
 });
 
 document.getElementById("logoutBtn").addEventListener("click", async () => {
@@ -418,6 +421,8 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
 });
 
 window.addEventListener("resize", () => {
-  layout = getLayout();
-  renderPath(currentUserData);
+  if (typeof layout !== "undefined") {
+    layout = getLayout();
+    if (typeof renderPixelJourney === "function") renderPixelJourney();
+  }
 });

@@ -398,7 +398,33 @@
   </div>
 </div>
 
-<script>
+<script type="module">
+  // ── Firebase imports ──────────────────────────────────────────────────────
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCZFMjYBeptcSflFOtRMMO7WKFJ21xwwrk",
+    authDomain: "expert-parakeet.firebaseapp.com",
+    projectId: "expert-parakeet",
+    storageBucket: "expert-parakeet.appspot.com",
+    messagingSenderId: "488940113425",
+    appId: "1:488940113425:web:79f9e491bb89ba08abebb0"
+  };
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
+
+  // ── Logout button ─────────────────────────────────────────────────────────
+  document.getElementById("logoutBtn").addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.href = "index.html";
+  });
+
+  // ── Hide page until auth resolves (prevents flash) ────────────────────────
+  document.body.style.visibility = "hidden";
+
   // ================= ULTRA PIXEL COURSE WITH RESPONSIVE SIZING =================
   const COURSE_DATA = {
     html: [
@@ -415,18 +441,18 @@
         { id: "html_anim", type: "coin", icon: "✨", label: "ANIM" }, { id: "html_finalchest", type: "chest", label: "💎 MASTER" }
       ]}
     ],
-    html: [
-      { title: "🌈 COLOR", icon: "🌈", stops: [
-        { id: "css_colors", type: "coin", icon: "🎨", label: "RGB" }, { id: "css_gradients", type: "coin", icon: "🌀", label: "GRAD" },
-        { id: "css_shadows", type: "coin", icon: "🌑", label: "SHADOW" }, { id: "css_chest", type: "chest", label: "📦 CHEST" }
+    python: [
+      { title: "🐍 BASICS", icon: "🐍", stops: [
+        { id: "py_syntax", type: "coin", icon: "📝", label: "SYNTAX" }, { id: "py_vars", type: "coin", icon: "🔢", label: "VARS" },
+        { id: "py_loops", type: "coin", icon: "🔁", label: "LOOPS" }, { id: "py_chest", type: "chest", label: "📦 CHEST" }
       ]},
-      { title: "📐 LAYOUT", icon: "📏", stops: [
-        { id: "css_position", type: "coin", icon: "📍", label: "POS" }, { id: "css_flex", type: "coin", icon: "🧩", label: "FLEX" },
-        { id: "css_grid", type: "coin", icon: "📊", label: "GRID" }, { id: "css_chest2", type: "chest", label: "🗝️ CHEST" }
+      { title: "📋 DATA", icon: "📋", stops: [
+        { id: "py_lists", type: "coin", icon: "📋", label: "LISTS" }, { id: "py_dicts", type: "coin", icon: "📖", label: "DICTS" },
+        { id: "py_funcs", type: "coin", icon: "🧩", label: "FUNCS" }, { id: "py_chest2", type: "chest", label: "🎁 CHEST" }
       ]},
-      { title: "✨ FX", icon: "✨", stops: [
-        { id: "css_transitions", type: "coin", icon: "⚡", label: "TRANS" }, { id: "css_keyframes", type: "coin", icon: "🎬", label: "FRAMES" },
-        { id: "css_responsive", type: "coin", icon: "📱", label: "MEDIA" }, { id: "css_final", type: "chest", label: "🏆 FINAL" }
+      { title: "🚀 ADV", icon: "🚀", stops: [
+        { id: "py_oop", type: "coin", icon: "🏛️", label: "OOP" }, { id: "py_files", type: "coin", icon: "💾", label: "FILES" },
+        { id: "py_libs", type: "coin", icon: "📚", label: "LIBS" }, { id: "py_master", type: "chest", label: "💎 MASTER" }
       ]}
     ],
     java: [
@@ -453,10 +479,10 @@
   let currentLang = "html";
   let userData = {
     name: "PIXEL HERO",
-    avatar: "🐱‍👤",
+    avatar: "🦊",
     xp: 0,
-    streak: 3,
-    progress: { html: [], css: [], java: [] }
+    streak: 0,
+    progress: { html: [], python: [], java: [] }
   };
 
   // ========== RESPONSIVE SIZE CALCULATION ==========
@@ -726,30 +752,8 @@
     renderPixelJourney();
   }
 
-  function loadUser() {
-    const saved = localStorage.getItem("pixelQuestSave");
-    if(saved) {
-      try {
-        const p = JSON.parse(saved);
-        userData = { ...userData, ...p };
-        if(!userData.progress) userData.progress = { html:[], css:[], java:[] };
-      } catch(e) {}
-    }
-    document.getElementById("xp-val").innerText = userData.xp;
-    document.getElementById("streak-val").innerText = userData.streak;
-    document.getElementById("nav-avatar").innerText = userData.avatar;
-    document.getElementById("welcomeAvatar").innerText = userData.avatar;
-    document.getElementById("welcomeName").innerHTML = `👾 ${userData.name} 👾`;
-    renderPixelJourney();
-  }
-
   document.getElementById("langSelect").addEventListener("change", (e) => setLanguage(e.target.value));
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    localStorage.removeItem("pixelQuestSave");
-    alert("◼ GAME SAVED ◼ See you next level!");
-    window.location.reload();
-  });
-  
+
   let resizeTimeout;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
@@ -759,12 +763,41 @@
       renderPixelJourney();
     }, 100);
   });
-  
-  updateLayout();
-  loadUser();
-  setInterval(() => {
-    localStorage.setItem("pixelQuestSave", JSON.stringify({ name: userData.name, avatar: userData.avatar, xp: userData.xp, streak: userData.streak, progress: userData.progress }));
-  }, 1500);
+
+  // ── Firebase auth boot ────────────────────────────────────────────────────
+  // Wait for Firebase to confirm login state, then show the page.
+  // If not logged in → redirect to login. No flash, no double render.
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.location.href = "index.html";
+      return;
+    }
+
+    // Load user data from Firestore
+    const snap = await getDoc(doc(db, "users", user.uid));
+    if (snap.exists()) {
+      const data = snap.data();
+      userData.name     = data.name     || "PIXEL HERO";
+      userData.avatar   = data.avatar   || "🦊";
+      userData.xp       = data.xp       || 0;
+      userData.streak   = data.streak   || 0;
+      userData.progress = data.progress || { html: [], python: [], java: [] };
+    }
+
+    // Update UI with real user data
+    document.getElementById("xp-val").innerText        = userData.xp;
+    document.getElementById("streak-val").innerText    = userData.streak;
+    document.getElementById("nav-avatar").innerText    = userData.avatar;
+    document.getElementById("welcomeAvatar").innerText = userData.avatar;
+    document.getElementById("welcomeName").innerHTML   = `👾 ${userData.name} 👾`;
+
+    // Render the path with real progress
+    updateLayout();
+    renderPixelJourney();
+
+    // Show the page now that everything is ready
+    document.body.style.visibility = "visible";
+  });
 </script>
 </body>
 </html>
