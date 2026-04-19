@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CS Quest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <div class="game-container">
+
+    <!-- Pet Section -->
+    <div class="pet-section">
+      <div class="pet-sprite" id="pet-face">🐣</div>
+      <div class="pet-info">
+        <div class="pet-name" id="pet-name">Bitsy</div>
+        <div class="hp-bar-bg">
+          <div class="hp-bar-fill" id="hp-bar"></div>
+        </div>
+        <div class="hp-label" id="hp-label">HP: 75 / 100</div>
+      </div>
+    </div>
+
+    <!-- Progress Row -->
+    <div class="progress-row">
+      <div class="q-counter" id="q-counter">Q 1 / 3</div>
+      <div class="score-display" id="score-display">Score: 0</div>
+    </div>
+
+    <!-- Type Badge -->
+    <div id="type-badge" class="type-badge mc">Multiple Choice</div>
+
+    <!-- Question Box -->
+    <div class="question-box">
+      <p id="question-text" class="question-text">Loading...</p>
+    </div>
+
+    <!-- Result Flash -->
+    <div id="result-flash" class="result-flash"></div>
+
+    <!-- MCQ / T-F buttons -->
+    <div id="choices" class="choices-grid hidden"></div>
+
+    <!-- Fill in the blank -->
+    <div id="fill-section" class="fill-section hidden">
+      <div class="fill-label">Your Answer</div>
+      <input id="fill-input" class="fill-input" type="text"
+             placeholder="Type your answer here..."
+             autocomplete="off" spellcheck="false" />
+    </div>
+
+    <!-- Submit -->
+    <button id="submit-btn" class="submit-btn">Submit</button>
+
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
