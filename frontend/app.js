@@ -323,14 +323,16 @@ onAuthStateChanged(auth, async (user) => {
   function updatePet(correct) {
     if (correct) {
       hp = Math.min(100, hp + 10);
-      petFace.textContent = "😊";
+      petFace.src = "cat_reactions/blackCatHappy.png?v=2";
     } else {
       hp = Math.max(0, hp - 8);
-      petFace.textContent = "😢";
+      petFace.src = "cat_reactions/blackCatSad.png?v=2";
     }
     hpBar.style.width = hp + "%";
     hpLabel.textContent = `HP: ${hp} / 100`;
-    setTimeout(() => { petFace.textContent = "🐣"; }, 900);
+    setTimeout(() => {
+  petFace.src = "cat_reactions/blackCatNeutral.png?v=2";
+}, 900);
   }
 
   submitBtn.addEventListener("click", async () => {
