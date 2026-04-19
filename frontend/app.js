@@ -492,6 +492,13 @@ onAuthStateChanged(auth, async (user) => {
     }, 1300);
   });
 
+  document.addEventListener("click", () => {
+  const audio = document.getElementById("bg-music");
+  if (audio) {
+    audio.play().catch(() => {});
+  }
+}, { once: true });
+
   // Start the quiz
   loadQuestion();
 });

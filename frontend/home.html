@@ -360,6 +360,10 @@
   </style>
 </head>
 <body data-lang="html">
+  
+  <audio id="bg-music" loop>
+  <source src="music/xDeviruchi - Title Theme .wav" type="audio/wav">
+</audio>
 
 <nav class="topbar">
   <div class="logo">█ PIXEL QUEST █</div>
@@ -834,6 +838,14 @@ window.addEventListener("DOMContentLoaded", () => {
     renderPixelJourney();
     document.body.style.visibility = "visible";
   });
+
+  document.addEventListener("click", () => {
+  const audio = document.getElementById("bg-music");
+  if (audio) {
+    audio.play().catch(() => {});
+  }
+}, { once: true });
+
 </script>
 </body>
 </html>
