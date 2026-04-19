@@ -486,13 +486,21 @@
     ]
   };
 
-  let currentLang = "html";
+  // 1. Grab the language from the URL if it exists
+const urlParams = new URLSearchParams(window.location.search);
+let currentLang = urlParams.get("lang") || "html";
+
+// 2. Make sure the dropdown visually matches the loaded language
+window.addEventListener("DOMContentLoaded", () => {
+  const select = document.getElementById("langSelect");
+  if (select) select.value = currentLang;
+});
   let userData = {
     name: "PIXEL HERO",
     avatar: "🦊",
     xp: 0,
     streak: 0,
-    progress: { html: [], python: [], java: [] }
+    completedNodes: {}
   };
 
   // ========== RESPONSIVE SIZE CALCULATION ==========
@@ -550,15 +558,19 @@
     return positions;
   }
 
-  function computeStates(completedIds) {
+  function computeStates(completedNodes) {
     const stops = getAllStops();
-    const doneSet = new Set(completedIds || []);
     let availableGiven = false;
     let states = {};
     for (let s of stops) {
-      if (doneSet.has(s.id)) states[s.id] = "done";
-      else if (!availableGiven) { states[s.id] = "available"; availableGiven = true; }
-      else states[s.id] = "locked";
+      if (completedNodes[s.id] === true) {
+        states[s.id] = "done";
+      } else if (!availableGiven) {
+        states[s.id] = "available";
+        availableGiven = true;
+      } else {
+        states[s.id] = "locked";
+      }
     }
     return states;
   }
@@ -695,7 +707,7 @@
     updateLayout();
     
     const allStops = getAllStops();
-    const completed = userData.progress[currentLang] || [];
+    const completed = userData.completedNodes || {};
     const states = computeStates(completed);
     const positions = computePositions(allStops);
     const maxX = Math.max(...positions.map(p => p.cx)) + currentSizes.coinSize + 100;
@@ -802,11 +814,12 @@
     const snap = await getDoc(doc(db, "users", user.uid));
     if (snap.exists()) {
       const data = snap.data();
-      userData.name     = data.name     || "PIXEL HERO";
-      userData.avatar   = data.avatar   || "🦊";
-      userData.xp       = data.xp       || 0;
-      userData.streak   = data.streak   || 0;
-      userData.progress = data.progress || { html: [], python: [], java: [] };
+      userData.name           = data.name           || "PIXEL HERO";
+      userData.avatar         = data.avatar         || "🦊";
+      userData.xp             = data.xp             || 0;
+      userData.streak         = data.streak         || 0;
+      // completedNodes is a flat object: { "java_arrays": true, "py_loops": true }
+      userData.completedNodes = data.completedNodes || {};
     }
 
     document.getElementById("xp-val").innerText        = userData.xp;

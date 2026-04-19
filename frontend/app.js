@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
-import { getFirestore, doc, updateDoc, arrayUnion, getDoc } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCZFMjYBeptcSflFOtRMMO7WKFJ21xwwrk",
@@ -27,47 +27,22 @@ let currentType = null;
 // Helper function to get the next node ID based on current node
 // ─────────────────────────────────────────────────────────────────────────────
 function getNextNodeId(currentNodeId, lang) {
-    // Define the progression order for each language
+    // Updated to match the exact IDs from home.html COURSE_DATA
     const progressions = {
         html: [
-            "html_file_setup",
-            "html_basic_elements", 
-            "html_ids",
-            "html_classes",
-            "html_links",
-            "html_images",
-            "html_comments",
-            "html_divs",
-            "html_layout",
-            "html_styles",
-            "html_buttons",
-            "html_iframes",
-            "html_tables"
+            "html_beg_files", "html_beg_basic", "html_beg_ids", "html_beg_classes", "html_beg_links", "html_beg_img", "html_beg_comments", "html_beg_divs", "html_beg_layout", "html_beg_css", "html_beg_buttons", "html_beg_iframes", "html_beg_tables", "html_chest",
+            "html_in_files", "html_in_basic", "html_in_ids", "html_in_classes", "html_in_links", "html_in_img", "html_in_comments", "html_in_divs", "html_in_layout", "html_in_css", "html_in_buttons", "html_in_iframes", "html_in_tables", "html_chest2",
+            "html_adv_files", "html_adv_basic", "html_adv_ids", "html_adv_classes", "html_adv_links", "html_adv_img", "html_adv_comments", "html_adv_divs", "html_adv_layout", "html_adv_css", "html_adv_buttons", "html_adv_iframes", "html_adv_tables", "html_master"
         ],
         python: [
-            "py_vars",
-            "py_conditionals",
-            "py_loops", 
-            "py_lists",
-            "py_dict",
-            "py_functions",
-            "py_files",
-            "py_oop"
+            "py_syntax", "py_vars", "py_loops", "py_chest",
+            "py_lists", "py_dicts", "py_funcs", "py_chest2",
+            "py_oop", "py_files", "py_libs", "py_master"
         ],
         java: [
-            "java_vars",
-            "java_arrays",
-            "java_loops",
-            "java_io",
-            "java_functions",
-            "java_sort",
-            "java_oop",
-            "java_stacks",
-            "java_linked",
-            "java_hash",
-            "java_bst",
-            "java_priority",
-            "java_graphs"
+            "java_syntax", "java_vars", "java_arrays", "java_loops", "java_io", "java_functions", "java_el_sorts", "java_el_oop", "java_chest",
+            "java_in_oop", "java_stacks_queues", "java_linked_lists", "java_in_hashmaps", "java_chest2",
+            "java_bst", "java_priority_queues", "java_graphs", "java_adv_oop", "java_master"
         ]
     };
     
@@ -177,57 +152,33 @@ console.log("Loading quiz for nodeId:", nodeId, "lang:", lang, "type:", type);
 document.body.style.visibility = "hidden";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Save progress to Firebase after quiz completion - ONLY ON PERFECT SCORE
+// Save progress — stores a flat object { "java_arrays": true } on the user doc.
+// Uses Firestore dot-notation so it only writes ONE field, no read needed first.
 // ─────────────────────────────────────────────────────────────────────────────
 async function saveProgress(score, totalQuestions) {
-  if (!currentUserId || !currentLang || !currentNodeId) {
-    console.log("Cannot save progress - missing user/lang/node");
+  if (!currentUserId || !currentNodeId) {
+    console.log("Cannot save — missing user or nodeId");
     return false;
   }
-  
-  // ✅ Only save if score is perfect (100%)
-  const isPerfectScore = (score === totalQuestions);
-  
-  if (!isPerfectScore) {
-    console.log(`Quiz score: ${score}/${totalQuestions} - Need 100% to unlock next level`);
+
+  if (score !== totalQuestions) {
+    console.log(`Score ${score}/${totalQuestions} — need 100% to unlock`);
     return false;
   }
-  
+
   try {
-    const userRef = doc(db, "users", currentUserId);
-    const userSnap = await getDoc(userRef);
+    // Replaced updateDoc with setDoc + merge: true
+    await setDoc(doc(db, "users", currentUserId), {
+      completedNodes: {
+        [currentNodeId]: true
+      },
+      xp: increment(100)
+    }, { merge: true });
     
-    if (userSnap.exists()) {
-      const userData = userSnap.data();
-      const currentProgress = userData.progress || { html: [], python: [], java: [] };
-      const langProgress = currentProgress[currentLang] || [];
-      
-      // Only add if not already completed
-      if (!langProgress.includes(currentNodeId)) {
-        const updatedProgress = {
-          ...currentProgress,
-          [currentLang]: [...langProgress, currentNodeId]
-        };
-        
-        // Update XP (60 for coins, 150 for chests)
-        const xpGain = currentType === 'chest' ? 150 : 60;
-        const newXP = (userData.xp || 0) + xpGain;
-        
-        await updateDoc(userRef, {
-          progress: updatedProgress,
-          xp: newXP
-        });
-        
-        console.log(`✅ PERFECT SCORE! Saved progress! Added ${currentNodeId} to ${currentLang}, +${xpGain} XP`);
-        return true;
-      } else {
-        console.log(`Node ${currentNodeId} already completed`);
-        return true; // Already completed
-      }
-    }
-    return false;
-  } catch (error) {
-    console.error("Error saving progress:", error);
+    console.log(`✅ Saved: completedNodes.${currentNodeId} = true`);
+    return true;
+  } catch (err) {
+    console.error("Failed to save progress:", err);
     return false;
   }
 }
