@@ -389,7 +389,7 @@ renderPath({ name: "", avatar: "🦊", completedNodes: [] });
 document.getElementById("topbar").classList.add("visible");
 
 observeAuth(async (user) => {
-  if (!user) { window.location.href = "index.html"; return; }
+  if (!user) { window.location.href = "quiz.html"; return; }
 
   const data = await getUserData(user.uid);
 
@@ -414,7 +414,7 @@ langSelect.addEventListener("change", (e) => {
 
 document.getElementById("logoutBtn").addEventListener("click", async () => {
   await logout();
-  window.location.href = "index.html";
+  window.location.href = "quiz.html";
 });
 
 window.addEventListener("resize", () => {
