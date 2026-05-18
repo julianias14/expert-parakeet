@@ -370,7 +370,7 @@
   <div class="topbar-stats">
     <div class="stat-pill xp">⚡ <span id="xp-val">0</span> XP</div>
     <div class="stat-pill fire">🔥 <span id="streak-val">3</span> streak</div>
-    <div class="nav-avatar" id="nav-avatar">🦊</div>
+    <div class="nav-avatar" id="nav-avatar"><img src="cat_reactions/blackCatNeutral.png" style="width:100%;height:100%;object-fit:cover;"></div>
     <select id="langSelect" class="lang-select">
       <option value="html">HTML</option>
       <option value="python">PYTHON</option>
@@ -381,7 +381,7 @@
 </nav>
 
 <div class="welcome-card">
-  <div class="welcome-emoji-big" id="welcomeAvatar">🦊</div>
+  <div class="welcome-emoji-big" id="welcomeAvatar"><img src="./cat_reactions/blackCatNeutral.png" style="width:100%;height:100%;object-fit:contain;"></div>
   <div>
     <div class="welcome-name" id="welcomeName">RETRO RUNNER</div>
     <div class="welcome-sub">► PIXEL JOURNEY ◄</div>
@@ -503,7 +503,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
   let userData = {
     name: "PIXEL HERO",
-    avatar: "🦊",
+    avatar: "cat_reactions/blackCatNeutral.png",
     xp: 0,
     streak: 0,
     completedNodes: {}
@@ -796,6 +796,7 @@ window.addEventListener("DOMContentLoaded", () => {
     currentLang = lang;
     document.body.setAttribute("data-lang", lang);
     renderPixelJourney();
+    document.getElementById("welcomeAvatar").innerHTML = `<img src="${getWelcomeCat()}" style="width:100%;height:100%;object-fit:contain;">`;
   }
 
   document.getElementById("langSelect").addEventListener("change", (e) => setLanguage(e.target.value));
@@ -810,6 +811,22 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 100);
   });
 
+  // Stage cat for #welcomeAvatar only
+  const STAGE_CATS = [
+    "cat_stages/BabyBlackCatNeutral.png",
+    "cat_stages/TeenBlackCatNeutral.png",
+    "cat_stages/AdultBlackCatNeutral.png",
+  ];
+  function getWelcomeCat() {
+    const stops = getAllStops();
+    const states = computeStates(userData.completedNodes || {});
+    const first = stops.find(s => states[s.id] === "available");
+    if (!first) return STAGE_CATS[2];
+    const sections = COURSE_DATA[currentLang];
+    const idx = sections.findIndex(sec => sec.stops.some(s => s.id === first.id));
+    return STAGE_CATS[Math.max(0, idx)] || STAGE_CATS[0];
+  }
+
   // ── Firebase auth boot ────────────────────────────────────────────────────
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -821,7 +838,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (snap.exists()) {
       const data = snap.data();
       userData.name           = data.name           || "PIXEL HERO";
-      userData.avatar         = data.avatar         || "🦊";
+      userData.avatar = data.avatar || "cat_reactions/blackCatNeutral.png";
       userData.xp             = data.xp             || 0;
       userData.streak         = data.streak         || 0;
       // completedNodes is a flat object: { "java_arrays": true, "py_loops": true }
@@ -830,8 +847,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("xp-val").innerText        = userData.xp;
     document.getElementById("streak-val").innerText    = userData.streak;
-    document.getElementById("nav-avatar").innerText    = userData.avatar;
-    document.getElementById("welcomeAvatar").innerText = userData.avatar;
+    document.getElementById("nav-avatar").innerHTML    = `<img src="${userData.avatar}" style="width:100%;height:100%;object-fit:cover;">`;
+    document.getElementById("welcomeAvatar").innerHTML = `<img src="${getWelcomeCat()}" style="width:100%;height:100%;object-fit:contain;">`;
     document.getElementById("welcomeName").innerHTML   = `👾 ${userData.name} 👾`;
 
     updateLayout();

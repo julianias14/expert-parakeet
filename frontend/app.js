@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, increment, updateDoc } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCZFMjYBeptcSflFOtRMMO7WKFJ21xwwrk",
@@ -167,13 +167,10 @@ async function saveProgress(score, totalQuestions) {
   }
 
   try {
-    // Replaced updateDoc with setDoc + merge: true
-    await setDoc(doc(db, "users", currentUserId), {
-      completedNodes: {
-        [currentNodeId]: true
-      },
+    await updateDoc(doc(db, "users", currentUserId), {
+      [`completedNodes.${currentNodeId}`]: true,
       xp: increment(100)
-    }, { merge: true });
+    });
     
     console.log(`✅ Saved: completedNodes.${currentNodeId} = true`);
     return true;
