@@ -23,21 +23,21 @@
 
     /* language themes - fixed background behavior */
     body[data-lang="html"] { 
-      background-image: url('img/htmlBackground.jpg');
+      background-image: url('assets/img/htmlBackground.jpg');
       background-size: cover;
       background-position: center center;
       background-attachment: fixed;
       background-repeat: no-repeat;
     }
     body[data-lang="python"] { 
-      background-image: url('img/pythonBackground.jpg');
+      background-image: url('assets/img/pythonBackground.jpg');
       background-size: cover;
       background-position: center center;
       background-attachment: fixed;
       background-repeat: no-repeat;
     }
     body[data-lang="java"] { 
-      background-image: url('img/javaBackground.jpg');
+      background-image: url('assets/img/javaBackground.jpg');
       background-size: cover;
       background-position: center center;
       background-attachment: fixed;
@@ -362,7 +362,7 @@
 <body data-lang="html">
   
   <audio id="bg-music" loop>
-  <source src="music/xDeviruchi - Title Theme .wav" type="audio/wav">
+  <source src="assets/music/xDeviruchi - Title Theme .wav" type="audio/wav">
 </audio>
 
 <nav class="topbar">
@@ -370,7 +370,7 @@
   <div class="topbar-stats">
     <div class="stat-pill xp">⚡ <span id="xp-val">0</span> XP</div>
     <div class="stat-pill fire">🔥 <span id="streak-val">3</span> streak</div>
-    <div class="nav-avatar" id="nav-avatar"><img src="cat_reactions/blackCatNeutral.png" style="width:100%;height:100%;object-fit:cover;"></div>
+    <div class="nav-avatar" id="nav-avatar"><img src="assets/cat_reactions/blackCatNeutral.png" style="width:100%;height:100%;object-fit:cover;"></div>
     <select id="langSelect" class="lang-select">
       <option value="html">HTML</option>
       <option value="python">PYTHON</option>
@@ -503,7 +503,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
   let userData = {
     name: "PIXEL HERO",
-    avatar: "cat_reactions/blackCatNeutral.png",
+    avatar: "assets/cat_reactions/blackCatNeutral.png",
     xp: 0,
     streak: 0,
     completedNodes: {}
@@ -622,14 +622,14 @@ window.addEventListener("DOMContentLoaded", () => {
     
     // Different images for different states
     if (state === "locked") {
-        iconSpan.src = "img/retroLock.png";
+        iconSpan.src = "assets/img/retroLock.png";
     } else if (state === "available") {
         // Special glowing/highlighted image for current available level
-        iconSpan.src = "img/flag.png";
+        iconSpan.src = "assets/img/flag.png";
     } else if (state === "done") {
-        iconSpan.src = "img/flower.jpg"
+        iconSpan.src = "assets/img/flower.jpg"
     } else {
-        iconSpan.src = `img/${stop.icon}.png`;
+        iconSpan.src = `assets/img/${stop.icon}.png`;
     }
     
     btn.appendChild(iconSpan);
@@ -756,7 +756,7 @@ window.addEventListener("DOMContentLoaded", () => {
         mascot.style.height = `${currentSizes.mascotSize}px`;
 
         const img = document.createElement("img");
-        img.src = "cat_faces/blackCat.png?v=2";
+        img.src = "assets/cat_faces/blackCat.png?v=2";
         img.alt = "cat mascot";
         img.style.width = "100%";
         img.style.height = "100%";
@@ -813,9 +813,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Stage cat for #welcomeAvatar only
   const STAGE_CATS = [
-    "cat_stages/BabyBlackCatNeutral.png",
-    "cat_stages/TeenBlackCatNeutral.png",
-    "cat_stages/AdultBlackCatNeutral.png",
+    "assets/cat_stages/BabyBlackCatNeutral.png",
+    "assets/cat_stages/TeenBlackCatNeutral.png",
+    "assets/cat_stages/AdultBlackCatNeutral.png",
   ];
   function getWelcomeCat() {
     const stops = getAllStops();
@@ -838,7 +838,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (snap.exists()) {
       const data = snap.data();
       userData.name           = data.name           || "PIXEL HERO";
-      userData.avatar = data.avatar || "cat_reactions/blackCatNeutral.png";
+      userData.avatar = data.avatar || "assets/cat_reactions/blackCatNeutral.png";
       userData.xp             = data.xp             || 0;
       userData.streak         = data.streak         || 0;
       // completedNodes is a flat object: { "java_arrays": true, "py_loops": true }
