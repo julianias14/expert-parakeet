@@ -15,7 +15,7 @@ document.getElementById("signupBtn").onclick = async () => {
 
   try {
     await signup(email, password, name, age);
-    window.location.href = "home.html";
+    window.location.href = "/home.html";
   } catch (err) {
     if (err.code === "auth/email-already-in-use") {
       showError("⚠️ Account already exists. Try logging in.");
