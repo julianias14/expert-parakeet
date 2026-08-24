@@ -1,5 +1,5 @@
 export const questions = [
-    // organized into 5 big topics with mini otpics in between
+    // organized into 5 big topics with mini topics in between
     // topic 1: file set-up
 
   {

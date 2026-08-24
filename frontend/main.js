@@ -29,7 +29,6 @@ async function renderUser(user) {
   console.log("Rendering user UI");
 }
 
-// make function global so HTML can access it
 window.handleSignup = async function () {
   try {
     const email = document.getElementById("email").value;
@@ -48,7 +47,6 @@ window.handleSignup = async function () {
 
     console.log("User created:", user.uid);
 
-    // 🔥 FORCE UI UPDATE HERE
     await renderUser(user);
 
   } catch (error) {

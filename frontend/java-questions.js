@@ -1,8 +1,4 @@
 export const questions = [
-
-  // ─────────────────────────────────────────────
-  // BEGINNER — Basic Java
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "Which of the following is the correct way to declare an integer variable in Java?",
@@ -57,10 +53,6 @@ export const questions = [
     topic: "basic_java",
     difficulty: "beginner"
   },
-
-  // ─────────────────────────────────────────────
-  // BEGINNER — Conditionals
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "What will print?\nint x = 10;\nif (x > 5) {\n  System.out.println(\"A\");\n} else {\n  System.out.println(\"B\");\n}",
@@ -101,9 +93,6 @@ export const questions = [
     difficulty: "beginner"
   },
 
-  // ─────────────────────────────────────────────
-  // BEGINNER — Arrays
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "Consider the array [2, 4, 6, 8, 10]. What is the size of the array?",
@@ -143,9 +132,6 @@ export const questions = [
     difficulty: "beginner"
   },
 
-  // ─────────────────────────────────────────────
-  // BEGINNER — Loops
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "How many times does this loop execute?\nfor (int i = 0; i < 5; i++) {}",
@@ -186,9 +172,6 @@ export const questions = [
     difficulty: "beginner"
   },
 
-  // ─────────────────────────────────────────────
-  // BEGINNER — I/O
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "Which class is used to read user input from the console in Java?",
@@ -221,9 +204,6 @@ export const questions = [
     difficulty: "beginner"
   },
 
-  // ─────────────────────────────────────────────
-  // BEGINNER — Functions
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "What keyword is used to send a value back from a method?",
@@ -261,9 +241,6 @@ export const questions = [
     difficulty: "beginner"
   },
 
-  // ─────────────────────────────────────────────
-  // BEGINNER — Elementary Sorts
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "What is the worst-case time complexity of Selection Sort?",
@@ -296,9 +273,6 @@ export const questions = [
     difficulty: "beginner"
   },
 
-  // ─────────────────────────────────────────────
-  // BEGINNER — OOP
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "What keyword creates a new instance of a class in Java?",
@@ -344,9 +318,6 @@ export const questions = [
     difficulty: "beginner"
   },
 
-  // ─────────────────────────────────────────────
-  // INTERMEDIATE — OOP
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "Which keyword allows a subclass to inherit from a parent class in Java?",
@@ -405,9 +376,6 @@ export const questions = [
     difficulty: "intermediate"
   },
 
-  // ─────────────────────────────────────────────
-  // INTERMEDIATE — Stacks & Queues
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "A Stack follows which ordering principle?",
@@ -456,9 +424,6 @@ export const questions = [
     difficulty: "intermediate"
   },
 
-  // ─────────────────────────────────────────────
-  // INTERMEDIATE — Linked Lists
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "What does each node in a singly linked list contain?",
@@ -504,9 +469,6 @@ export const questions = [
     difficulty: "intermediate"
   },
 
-  // ─────────────────────────────────────────────
-  // INTERMEDIATE — HashMaps
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "What is the average time complexity of get() and put() in a Java HashMap?",
@@ -552,9 +514,6 @@ export const questions = [
     difficulty: "intermediate"
   },
 
-  // ─────────────────────────────────────────────
-  // ADVANCED — BST
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "In a Binary Search Tree, where are values smaller than the root stored?",
@@ -603,9 +562,6 @@ export const questions = [
     difficulty: "advanced"
   },
 
-  // ─────────────────────────────────────────────
-  // ADVANCED — Priority Queues
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "What data structure typically backs a Priority Queue?",
@@ -646,9 +602,6 @@ export const questions = [
     difficulty: "advanced"
   },
 
-  // ─────────────────────────────────────────────
-  // ADVANCED — Graphs
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "Which graph traversal uses a queue to visit nodes level by level?",
@@ -705,9 +658,6 @@ export const questions = [
     difficulty: "advanced"
   },
 
-  // ─────────────────────────────────────────────
-  // ADVANCED — More Involved OOP
-  // ─────────────────────────────────────────────
   {
     type: "mc",
     question: "What design pattern ensures only one instance of a class is ever created?",

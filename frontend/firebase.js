@@ -3,7 +3,6 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-aut
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-storage.js";
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCZFMjYBeptcSflFOtRMMO7WKFJ21xwwrk",
   authDomain: "expert-parakeet.firebaseapp.com",

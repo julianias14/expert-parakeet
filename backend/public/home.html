@@ -3,45 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>⚡ PIXEL QUEST ⚡ | RESPONSIVE 8-BIT JOURNEY</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>PIXEL PAWS</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  >
+
   <style>
-    /* ------------------- EXTREME PIXELATION ------------------- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      image-rendering: crisp-edges;
       image-rendering: pixelated;
-      image-rendering: crisp-edges;
     }
 
     body {
       background: #0a0c1a;
-      font-family: 'Press Start 2P', monospace;
+      font-family: "Press Start 2P", monospace;
       overflow-x: hidden;
       image-rendering: pixelated;
     }
 
-    /* HARD scanlines + CRT flicker */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 999;
+    body[data-lang="html"] {
+      background-image: url("img/htmlBackground.jpg");
+      background-size: cover;
     }
 
-    /* language themes - extra crunchy */
-    body[data-lang="html"] { background-image: url('img/htmlBackground.jpg'); background-size: cover; }
-    body[data-lang="python"]  { background-image: url('img/pythonBackground.jpg'); background-size: cover; }
-    body[data-lang="java"] { background-image: url('img/javaBackground.jpg'); background-size: cover; }
+    body[data-lang="python"] {
+      background-image: url("img/pythonBackground.jpg");
+      background-size: cover;
+    }
 
-    /* ----- TOPBAR (BLOCKY) ----- */
+    body[data-lang="java"] {
+      background-image: url("img/javaBackground.jpg");
+      background-size: cover;
+    }
+
     .topbar {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 70px;
       background: #010008ee;
       border-bottom: 4px solid #f7d44a;
@@ -51,16 +54,12 @@
       justify-content: space-between;
       padding: 0 20px;
       z-index: 200;
-      font-family: 'Press Start 2P', monospace;
-      backdrop-filter: none;
+      font-family: "Press Start 2P", monospace;
     }
 
     .logo {
       font-size: clamp(8px, 3vw, 14px);
       letter-spacing: 2px;
-      background: #f7d44a;
-      -webkit-background-clip: text;
-      background-clip: text;
       color: #f7d44a;
       text-shadow: 3px 3px 0 #5a2e00;
       filter: drop-shadow(0 0 2px black);
@@ -77,15 +76,27 @@
     .stat-pill {
       background: #000000;
       border: 3px solid;
-      padding: clamp(4px, 1.5vw, 8px) clamp(6px, 2vw, 12px);
+      padding:
+        clamp(4px, 1.5vw, 8px)
+        clamp(6px, 2vw, 12px);
       font-size: clamp(6px, 2vw, 10px);
       font-weight: bold;
-      box-shadow: inset 0 0 0 1px #ffffff33, 3px 3px 0 #000000aa;
+      box-shadow:
+        inset 0 0 0 1px #ffffff33,
+        3px 3px 0 #000000aa;
       image-rendering: pixelated;
       white-space: nowrap;
     }
-    .stat-pill.xp { border-color: #5dc9ff; color: #8dd0ff; }
-    .stat-pill.fire { border-color: #ff884d; color: #ffaa66; }
+
+    .stat-pill.xp {
+      border-color: #5dc9ff;
+      color: #8dd0ff;
+    }
+
+    .stat-pill.fire {
+      border-color: #ff884d;
+      color: #ffaa66;
+    }
 
     .nav-avatar {
       font-size: clamp(24px, 6vw, 36px);
@@ -103,9 +114,11 @@
     .lang-select {
       background: #0b0b10;
       border: 3px solid #f7b32b;
-      font-family: 'Press Start 2P', monospace;
+      font-family: "Press Start 2P", monospace;
       font-size: clamp(6px, 2vw, 9px);
-      padding: clamp(5px, 1.5vw, 8px) clamp(4px, 1.5vw, 8px);
+      padding:
+        clamp(5px, 1.5vw, 8px)
+        clamp(4px, 1.5vw, 8px);
       color: #ffdd99;
       cursor: pointer;
       font-weight: bold;
@@ -116,16 +129,21 @@
       background: #2e0a1a;
       border: 3px solid #ff7f7f;
       color: #ffb7b7;
-      font-family: 'Press Start 2P', monospace;
+      font-family: "Press Start 2P", monospace;
       font-size: clamp(6px, 2vw, 9px);
-      padding: clamp(5px, 1.5vw, 8px) clamp(8px, 2vw, 14px);
+      padding:
+        clamp(5px, 1.5vw, 8px)
+        clamp(8px, 2vw, 14px);
       cursor: pointer;
       box-shadow: 2px 2px 0 #3a001a;
       white-space: nowrap;
     }
-    .logout-btn:active { transform: translate(2px,2px); box-shadow: none; }
 
-    /* welcome pixel card */
+    .logout-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
+
     .welcome-card {
       margin-top: 90px;
       margin-bottom: 20px;
@@ -135,27 +153,46 @@
       max-width: 550px;
       margin-left: auto;
       margin-right: auto;
-      padding: clamp(10px, 3vw, 18px) clamp(12px, 4vw, 24px);
+      padding:
+        clamp(10px, 3vw, 18px)
+        clamp(12px, 4vw, 24px);
       display: flex;
       gap: clamp(12px, 4vw, 24px);
       align-items: center;
       box-shadow: 8px 8px 0 #00000077;
       image-rendering: pixelated;
     }
-    .welcome-emoji-big { font-size: clamp(36px, 10vw, 56px); filter: drop-shadow(2px 2px 0 black); }
-    .welcome-name { font-size: clamp(10px, 3vw, 15px); color: #ffdd99; text-shadow: 2px 2px 0 #3b1e00; }
-    .welcome-sub { font-size: clamp(6px, 2vw, 9px); color: #cbc3ff; margin-top: 8px; letter-spacing: 1px; }
 
-    /* ----- HORIZONTAL PIXEL PATH (SCROLL) ----- */
+    .welcome-avatar {
+      font-size: clamp(36px, 10vw, 56px);
+      filter: drop-shadow(2px 2px 0 black);
+    }
+
+    .welcome-name {
+      font-size: clamp(10px, 3vw, 15px);
+      color: #ffdd99;
+      text-shadow: 2px 2px 0 #3b1e00;
+    }
+
+    .welcome-sub {
+      font-size: clamp(6px, 2vw, 9px);
+      color: #cbc3ff;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+
     .path-scroll {
       width: 100%;
       overflow-x: auto;
       overflow-y: visible;
-      padding: 20px 0 70px 0;
+      padding: 20px 0 70px;
       cursor: grab;
       scroll-behavior: smooth;
     }
-    .path-scroll:active { cursor: grabbing; }
+
+    .path-scroll:active {
+      cursor: grabbing;
+    }
 
     .path-canvas {
       position: relative;
@@ -173,12 +210,14 @@
       image-rendering: crisp-edges;
     }
 
-    /* ========== DYNAMIC PIXEL COIN (size controlled by JS + CSS vars) ========== */
     .coin {
       position: absolute;
       background: #f7c56e;
       border: none;
-      box-shadow: 0 0 0 4px #fae672, 0 0 0 8px #7a3e00, inset 0 0 0 3px #ffefb0;
+      box-shadow:
+        0 0 0 4px #fae672,
+        0 0 0 8px #7a3e00,
+        inset 0 0 0 3px #ffefb0;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -187,35 +226,57 @@
       transition: 0.02s linear;
       transform: translate(-50%, -50%);
       image-rendering: crisp-edges;
-      clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+      clip-path: polygon(
+        20% 0%,
+        80% 0%,
+        100% 20%,
+        100% 80%,
+        80% 100%,
+        20% 100%,
+        0% 80%,
+        0% 20%
+      );
     }
-    .coin:active { transform: translate(-50%, -50%) scale(0.92); }
+
+    .coin:active {
+      transform: translate(-50%, -50%) scale(0.92);
+    }
+
     .coin.done {
       background: #6c5ce7;
-      box-shadow: 0 0 0 4px #b77cff, 0 0 0 8px #2a1e6e, inset 0 0 0 3px #dbbaff;
+      box-shadow:
+        0 0 0 4px #b77cff,
+        0 0 0 8px #2a1e6e,
+        inset 0 0 0 3px #dbbaff;
     }
+
     .coin.available {
       background: radial-gradient(#ffc85a, #ffa01e);
       animation: pixelPulse 0.65s steps(2) infinite;
-      box-shadow: 0 0 0 4px #ffffaa, 0 0 0 8px #b45f1b;
+      box-shadow:
+        0 0 0 4px #ffffaa,
+        0 0 0 8px #b45f1b;
     }
+
     .coin.locked {
       background: #3b3a44;
-      box-shadow: 0 0 0 4px #6e6b7c, 0 0 0 8px #1e1c28;
+      box-shadow:
+        0 0 0 4px #6e6b7c,
+        0 0 0 8px #1e1c28;
       filter: grayscale(0.6);
       opacity: 0.8;
     }
-    .coin-icon { filter: drop-shadow(2px 2px 0 #000000aa); image-rendering: pixelated; }
+
     .coin-label {
       background: #000000cc;
       padding: 3px 6px;
-      margin-top: 4px;
       color: #ffeaac;
       white-space: nowrap;
       border: 1px solid #f7c56e;
       font-weight: bold;
       font-size: clamp(6px, 2vw, 9px);
     }
+
     .check-badge {
       position: absolute;
       bottom: -4px;
@@ -231,6 +292,7 @@
       color: #003d2b;
       font-weight: bold;
     }
+
     .start-bubble {
       position: absolute;
       top: -44px;
@@ -245,7 +307,6 @@
       animation: shakeBubble 0.4s infinite alternate;
     }
 
-    /* ========== PIXEL CHEST (responsive) ========== */
     .chest-node {
       position: absolute;
       transform: translate(-50%, -50%);
@@ -253,18 +314,23 @@
       z-index: 30;
       image-rendering: crisp-edges;
     }
+
     .chest-graphic {
       position: relative;
       width: 100%;
       margin: 0 auto;
     }
+
     .chest-lid {
       background: #c97e2a;
       border: 3px solid #3e2800;
-      box-shadow: inset -2px -2px 0 #5a2e00, inset 2px 2px 0 #ffcf87;
+      box-shadow:
+        inset -2px -2px 0 #5a2e00,
+        inset 2px 2px 0 #ffcf87;
       margin: 0 auto;
       transition: 0.04s linear;
     }
+
     .chest-body {
       background: #a75f1a;
       border: 3px solid #3e2800;
@@ -274,14 +340,26 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      box-shadow: inset -2px -2px 0 #4a2800, inset 2px 2px 0 #e5a44b;
+      box-shadow:
+        inset -2px -2px 0 #4a2800,
+        inset 2px 2px 0 #e5a44b;
     }
+
     .chest-lock {
       background: #f7d44a;
       border: 3px solid #6b4100;
-      border-radius: 0px;
-      clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+      clip-path: polygon(
+        20% 0%,
+        80% 0%,
+        100% 20%,
+        100% 80%,
+        80% 100%,
+        20% 100%,
+        0% 80%,
+        0% 20%
+      );
     }
+
     .chest-label {
       text-align: center;
       margin-top: 8px;
@@ -293,11 +371,22 @@
       font-size: clamp(6px, 2vw, 9px);
       white-space: nowrap;
     }
-    .chest-node.available-chest .chest-lid { background: #ffaa44; box-shadow: 0 0 0 3px #ffff88; }
-    .chest-node.done-chest .chest-lid { background: #9173e0; }
-    .chest-node.locked-chest { opacity: 0.6; cursor: not-allowed; filter: grayscale(0.4); }
 
-    /* MASCOT pixel wanderer */
+    .chest-node.available-chest .chest-lid {
+      background: #ffaa44;
+      box-shadow: 0 0 0 3px #ffff88;
+    }
+
+    .chest-node.done-chest .chest-lid {
+      background: #9173e0;
+    }
+
+    .chest-node.locked-chest {
+      opacity: 0.6;
+      cursor: not-allowed;
+      filter: grayscale(0.4);
+    }
+
     .mascot {
       position: absolute;
       transform: translate(-50%, -50%);
@@ -309,7 +398,6 @@
       font-size: clamp(40px, 10vw, 76px);
     }
 
-    /* trophy block finish */
     .trophy-node {
       position: absolute;
       transform: translate(-50%, -50%);
@@ -318,15 +406,26 @@
       align-items: center;
       filter: drop-shadow(4px 6px 0 #000000);
     }
+
     .trophy-coin {
       background: #f7d44a;
       border: 5px solid #ffb347;
-      clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+      clip-path: polygon(
+        20% 0%,
+        80% 0%,
+        100% 20%,
+        100% 80%,
+        80% 100%,
+        20% 100%,
+        0% 80%,
+        0% 20%
+      );
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: inset 0 0 0 4px #fff0a3;
     }
+
     .trophy-label {
       font-size: clamp(6px, 2vw, 9px);
       background: black;
@@ -337,25 +436,53 @@
       white-space: nowrap;
     }
 
-    /* PIXEL animations */
     @keyframes pixelPulse {
-      0% { box-shadow: 0 0 0 4px #ffffaa, 0 0 0 8px #b45f1b; }
-      100% { box-shadow: 0 0 0 6px #ffef8a, 0 0 0 10px #ffa31a; }
+      0% {
+        box-shadow:
+          0 0 0 4px #ffffaa,
+          0 0 0 8px #b45f1b;
+      }
+
+      100% {
+        box-shadow:
+          0 0 0 6px #ffef8a,
+          0 0 0 10px #ffa31a;
+      }
     }
+
     @keyframes shakeBubble {
-      from { transform: translateX(-2px); }
-      to { transform: translateX(4px); }
+      from {
+        transform: translateX(-2px);
+      }
+
+      to {
+        transform: translateX(4px);
+      }
     }
+
     @keyframes pixelWalk {
-      0% { transform: translate(-50%, -50%) translateY(0px) rotate(-1deg);}
-      100% { transform: translate(-50%, -50%) translateY(-6px) rotate(2deg);}
+      0% {
+        transform:
+          translate(-50%, -50%)
+          translateY(0)
+          rotate(-1deg);
+      }
+
+      100% {
+        transform:
+          translate(-50%, -50%)
+          translateY(-6px)
+          rotate(2deg);
+      }
     }
 
     .section-strip {
       position: absolute;
       background: #020617ee;
       border: 3px solid #ffbc5e;
-      padding: clamp(4px, 1.5vw, 8px) clamp(8px, 2.5vw, 16px);
+      padding:
+        clamp(4px, 1.5vw, 8px)
+        clamp(8px, 2.5vw, 16px);
       font-size: clamp(6px, 2vw, 10px);
       white-space: nowrap;
       color: #f7d44a;
@@ -367,455 +494,1430 @@
     }
   </style>
 </head>
+
 <body data-lang="html">
 
-<nav class="topbar">
-  <div class="logo">█ PIXEL QUEST █</div>
-  <div class="topbar-stats">
-    <div class="stat-pill xp">⚡ <span id="xp-val">0</span> XP</div>
-    <div class="stat-pill fire">🔥 <span id="streak-val">3</span> streak</div>
-    <div class="nav-avatar" id="nav-avatar">🦊</div>
-    <select id="langSelect" class="lang-select">
-      <option value="html">HTML</option>
-      <option value="python">PYTHON</option>
-      <option value="java">JAVA</option>
-    </select>
-    <button class="logout-btn" id="logoutBtn">LOGOUT</button>
-  </div>
-</nav>
+  <nav class="topbar">
+    <div class="logo">█ PIXEL PAWS █</div>
 
-<div class="welcome-card">
-  <div class="welcome-emoji-big" id="welcomeAvatar">🦊</div>
-  <div>
-    <div class="welcome-name" id="welcomeName">RETRO RUNNER</div>
-    <div class="welcome-sub">► PIXEL JOURNEY ◄</div>
-  </div>
-</div>
-
-<div class="path-scroll" id="pathScroll">
-  <div class="path-canvas" id="pathCanvas">
-    <svg class="path-svg" id="pathSvg"></svg>
-  </div>
-</div>
-
-<script type="module">
-  // ── Firebase imports ──────────────────────────────────────────────────────
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
-  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCZFMjYBeptcSflFOtRMMO7WKFJ21xwwrk",
-    authDomain: "expert-parakeet.firebaseapp.com",
-    projectId: "expert-parakeet",
-    storageBucket: "expert-parakeet.appspot.com",
-    messagingSenderId: "488940113425",
-    appId: "1:488940113425:web:79f9e491bb89ba08abebb0"
-  };
-  const app  = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db   = getFirestore(app);
-
-  // ── Logout button ─────────────────────────────────────────────────────────
-  document.getElementById("logoutBtn").addEventListener("click", async () => {
-    await signOut(auth);
-    window.location.href = "index.html";
-  });
-
-  // ── Hide page until auth resolves (prevents flash) ────────────────────────
-  document.body.style.visibility = "hidden";
-
-  // ================= ULTRA PIXEL COURSE WITH RESPONSIVE SIZING =================
-  const COURSE_DATA = {
-    html: [
-      { title: "🏷️ BEGINNER", icon: "🏷️", stops: [
-        { id: "html_beg_files", type: "coin", icon: "📄", label: "FILE SETUP" }, { id: "html_beg_basic", type: "coin", icon: "🏷️", label: "BASIC ELEMENTS" },
-        { id: "html_beg_ids", type: "coin", icon: "📋", label: "IDS" }, { id: "html_beg_classes", type: "coin", icon: "📄", label: "CLASSES" },
-        { id: "html_beg_links", type: "coin", icon: "🏷️", label: "LINKS" }, { id: "html_beg_img", type: "coin", icon: "📋", label: "IMAGES" },
-        { id: "html_beg_comments", type: "coin", icon: "📄", label: "COMMENTS" }, { id: "html_beg_divs", type: "coin", icon: "🏷️", label: "DIVS" },
-        { id: "html_beg_layout", type: "coin", icon: "📋", label: "LAYOUT" }, { id: "html_beg_css", type: "coin", icon: "📄", label: "CSS" },
-        { id: "html_beg_buttons", type: "coin", icon: "🏷️", label: "BUTTONS" }, { id: "html_beg_iframes", type: "coin", icon: "📋", label: "IFRAMES" },
-        { id: "html_beg_tables", type: "coin", icon: "📄", label: "TABLES" },
-        { id: "html_chest", type: "chest", label: "🏆 CHEST" }
-      ]},
-      { title: "🎨 INTERMEDIATE", icon: "🎨", stops: [
-        { id: "html_in_files", type: "coin", icon: "🎨", label: "FILE SETUP" }, { id: "html_in_basic", type: "coin", icon: "🔍", label: "BASIC ELEMENTS" },
-        { id: "html_in_ids", type: "coin", icon: "📦", label: "IDS" }, { id: "html_in_ids", type: "coin", icon: "📋", label: "CLASSES" },
-        { id: "html_in_links", type: "coin", icon: "🎨", label: "LINKS" }, { id: "html_in_img", type: "coin", icon: "🔍", label: "IMAGES" },
-        { id: "html_in_comments", type: "coin", icon: "📋", label: "COMMENTS" },  { id: "html_in_divs", type: "coin", icon: "🎨", label: "DIVS" },
-        { id: "html_beg_layout", type: "coin", icon: "🔍", label: "LAYOUT" }, { id: "html_in_css", type: "coin", icon: "📦", label: "CSS" },
-        { id: "html_in_buttons", type: "coin", icon: "📋", label: "BUTTONS" }, { id: "html_in_iframes", type: "coin", icon: "🎨", label: "IFRAMES" },
-        { id: "html_in_tables", type: "coin", icon: "🔍", label: "TABLES" },
-        { id: "html_chest2", type: "chest", label: "🎁 CHEST" }
-      ]},
-      { title: "🚀 ADVANCED", icon: "🚀", stops: [
-        { id: "html_adv_files", type: "coin", icon: "🧩", label: "FILE SETUP" }, { id: "html_adv_basic", type: "coin", icon: "🔲", label: "BASIC ELEMENTS" },
-        { id: "html_adv_ids", type: "coin", icon: "✨", label: "IDS" }, { id: "html_adv_ids", type: "coin", icon: "🧩", label: "CLASSES" },
-        { id: "html_adv_links", type: "coin", icon: "🔲", label: "LINKS" }, { id: "html_adv_img", type: "coin", icon: "✨", label: "IMAGES" },
-        { id: "html_adv_comments", type: "coin", icon: "🧩", label: "COMMENTS" }, { id: "html_adv_divs", type: "coin", icon: "🔲", label: "DIVS" },
-        { id: "html_adv_layout", type: "coin", icon: "✨", label: "LAYOUT" }, { id: "html_adv_css", type: "coin", icon: "🧩", label: "CSS" },
-        { id: "html_adv_buttons", type: "coin", icon: "🔲", label: "BUTTONS" }, { id: "html_adv_iframes", type: "coin", icon: "✨", label: "IFRAMES" },
-        { id: "html_adv_tables", type: "coin", icon: "🧩", label: "TABLES" },
-        { id: "html_master", type: "chest", label: "💎 MASTER" }
-      ]}
-    ],
-    python: [
-      { title: "🐍 BASICS", icon: "🐍", stops: [
-        { id: "py_syntax", type: "coin", icon: "📝", label: "SYNTAX" }, { id: "py_vars", type: "coin", icon: "🔢", label: "VARS" },
-        { id: "py_loops", type: "coin", icon: "🔁", label: "LOOPS" }, { id: "py_chest", type: "chest", label: "📦 CHEST" }
-      ]},
-      { title: "📋 DATA", icon: "📋", stops: [
-        { id: "py_lists", type: "coin", icon: "📋", label: "LISTS" }, { id: "py_dicts", type: "coin", icon: "📖", label: "DICTS" },
-        { id: "py_funcs", type: "coin", icon: "🧩", label: "FUNCS" }, { id: "py_chest2", type: "chest", label: "🎁 CHEST" }
-      ]},
-      { title: "🚀 ADV", icon: "🚀", stops: [
-        { id: "py_oop", type: "coin", icon: "🏛️", label: "OOP" }, { id: "py_files", type: "coin", icon: "💾", label: "FILES" },
-        { id: "py_libs", type: "coin", icon: "📚", label: "LIBS" }, { id: "py_master", type: "chest", label: "💎 MASTER" }
-      ]}
-    ],
-    java: [
-      { title: "☕ BEGINNER", icon: "☕", stops: [
-        { id: "java_syntax", type: "coin", icon: "📝", label: "BASIC SYNTAX" }, { id: "java_vars", type: "coin", icon: "🔢", label: "CONDITIONALS" },
-        { id: "java_arrays", type: "coin", icon: "⚙️", label: "ARRAYS" }, { id: "java_loops", type: "coin", icon: "⚙️", label: "LOOPS" },
-        { id: "java_io", type: "coin", icon: "⚙️", label: "INPUT/OUTPUT" }, { id: "java_functions", type: "coin", icon: "⚙️", label: "FUNCTIONS" },
-        { id: "java_el_sorts", type: "coin", icon: "⚙️", label: "SORTS" }, { id: "java_el_oop", type: "coin", icon: "⚙️", label: "OOP" },
-        { id: "java_chest", type: "chest", label: "🧰 CHEST" }
-      ]},
-      { title: "🔄 INTERMEDIATE", icon: "🔄", stops: [
-        { id: "java_in_oop", type: "coin", icon: "🔀", label: "OOP" }, { id: "java_stacks_queues", type: "coin", icon: "🔁", label: "STACKS & QUEUES" },
-        { id: "java_linked_lists", type: "coin", icon: "📚", label: "LINKED LISTS" }, { id: "java_in_hashmaps", type: "coin", icon: "🔀", label: "HASHMAPS" },
-        { id: "java_chest2", type: "chest", label: "📀 CHEST" }
-      ]},
-      { title: "🧩 ADVANCED", icon: "🧩", stops: [
-        { id: "java_bst", type: "coin", icon: "⚡", label: "BST" }, { id: "java_priority_queues", type: "coin", icon: "🏛️", label: "PRIORITY QUEUES" },
-        { id: "java_graphs", type: "coin", icon: "🧬", label: "GRAPHS" }, { id: "java_adv_oop", type: "coin", icon: "🧬", label: "OOP" },
-        { id: "java_master", type: "chest", label: "🏅 MASTER" }
-      ]}
-    ]
-  };
-
-  let currentLang = "html";
-  let userData = {
-    name: "PIXEL HERO",
-    avatar: "🦊",
-    xp: 0,
-    streak: 0,
-    progress: { html: [], python: [], java: [] }
-  };
-
-  // ========== RESPONSIVE SIZE CALCULATION ==========
-  // Returns icon size based on screen width (larger on wide screens, smaller on narrow)
-  function getResponsiveSize() {
-    const width = window.innerWidth;
-    // Base size: at 1920px width -> 90px, at 400px -> 55px
-    // Clamped between 52px and 96px for coins
-    let coinSize = Math.min(96, Math.max(52, Math.floor(width / 20) + 38));
-    let chestWidth = coinSize + 8;
-    let chestHeight = coinSize + 12;
-    let iconFontSize = Math.min(42, Math.max(24, Math.floor(coinSize * 0.48)));
-    let mascotSize = Math.min(80, Math.max(44, Math.floor(coinSize * 0.9)));
-    
-    return {
-      coinSize: coinSize,
-      chestWidth: chestWidth,
-      chestHeight: chestHeight,
-      iconFontSize: iconFontSize,
-      mascotSize: mascotSize,
-      lidHeight: Math.floor(coinSize * 0.38),
-      bodyHeight: Math.floor(coinSize * 0.58)
-    };
-  }
-
-  let layout = { colW: 170, rowH: 190, padX: 130, padY: 150, nodesPerRow: 4 };
-  let currentSizes = getResponsiveSize();
-
-  function updateLayout() {
-    const w = window.innerWidth;
-    let nodesPerRow = w < 700 ? 3 : w < 1100 ? 4 : 5;
-    // Scale spacing based on screen size too - wider screens get more spacing
-    const scale = Math.min(1.2, Math.max(0.7, w / 1200));
-    const coinSz = currentSizes.coinSize;
-    layout = {
-      colW: (150 + coinSz * 0.6) * scale,
-      rowH: (160 + coinSz * 0.5) * scale,
-      padX: (80 + coinSz * 0.4) * scale,
-      padY: (110 + coinSz * 0.3) * scale,
-      nodesPerRow: nodesPerRow
-    };
-  }
-
-  function getAllStops() { return COURSE_DATA[currentLang].flatMap(s => s.stops); }
-
-  function computePositions(allStops) {
-    const positions = [];
-    const { nodesPerRow, colW, rowH, padX, padY } = layout;
-    allStops.forEach((_, idx) => {
-      const row = Math.floor(idx / nodesPerRow);
-      const colIn = idx % nodesPerRow;
-      const ltr = row % 2 === 0;
-      let col = ltr ? colIn : (nodesPerRow - 1 - colIn);
-      const waveY = (idx % 6) * 5 - 12;
-      const cx = padX + col * colW;
-      const cy = padY + row * rowH + waveY;
-      positions.push({ cx, cy });
-    });
-    return positions;
-  }
-
-  function computeStates(completedIds) {
-    const stops = getAllStops();
-    const doneSet = new Set(completedIds || []);
-    let availableGiven = false;
-    let states = {};
-    for (let s of stops) {
-      if (doneSet.has(s.id)) states[s.id] = "done";
-      else if (!availableGiven) { states[s.id] = "available"; availableGiven = true; }
-      else states[s.id] = "locked";
-    }
-    return states;
-  }
-
-  function drawConnectors(svg, positions, states, allStops) {
-    svg.innerHTML = "";
-    for (let i = 1; i < positions.length; i++) {
-      const a = positions[i-1], b = positions[i];
-      const prevState = states[allStops[i-1].id];
-      const color = prevState === "done" ? "#ffbc5e" : "#4a4a6a";
-      const w = prevState === "done" ? Math.max(4, Math.floor(currentSizes.coinSize / 18)) : Math.max(3, Math.floor(currentSizes.coinSize / 22));
-      const cp1x = a.cx + (b.cx - a.cx) * 0.4;
-      const cp1y = a.cy;
-      const cp2x = b.cx - (b.cx - a.cx) * 0.4;
-      const cp2y = b.cy;
-      const d = `M ${a.cx} ${a.cy} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${b.cx} ${b.cy}`;
-      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      path.setAttribute("d", d);
-      path.setAttribute("stroke", color);
-      path.setAttribute("stroke-width", w);
-      path.setAttribute("fill", "none");
-      path.setAttribute("stroke-linecap", "square");
-      if (prevState !== "done") path.setAttribute("stroke-dasharray", "10 8");
-      svg.appendChild(path);
-    }
-  }
-
-  function makeCoinElement(stop, state, cx, cy) {
-    const btn = document.createElement("button");
-    btn.className = `coin ${state}`;
-    const sz = currentSizes.coinSize;
-    btn.style.width = `${sz}px`;
-    btn.style.height = `${sz}px`;
-    btn.style.left = `${cx}px`;
-    btn.style.top = `${cy}px`;
-    btn.dataset.id = stop.id;
-    
-    const iconSpan = document.createElement("div");
-    iconSpan.className = "coin-icon";
-    iconSpan.style.fontSize = `${currentSizes.iconFontSize}px`;
-    iconSpan.textContent = state === "locked" ? "🔒" : stop.icon;
-    btn.appendChild(iconSpan);
-    
-    const labelSpan = document.createElement("div");
-    labelSpan.className = "coin-label";
-    labelSpan.textContent = stop.label;
-    btn.appendChild(labelSpan);
-    
-    if (state === "done") {
-      const check = document.createElement("div");
-      check.className = "check-badge";
-      check.textContent = "✓";
-      btn.appendChild(check);
-    }
-    if (state === "available") {
-      const bubble = document.createElement("div");
-      bubble.className = "start-bubble";
-      bubble.textContent = "► START";
-      btn.appendChild(bubble);
-    }
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (state === "locked") { pixelShake(btn); return; }
-      if (state === "available" && !userData.progress[currentLang].includes(stop.id)) {
-        userData.progress[currentLang].push(stop.id);
-        userData.xp += 60;
-        document.getElementById("xp-val").innerText = userData.xp;
-        renderPixelJourney();
-      } else { alert(`⚡ MISSION: ${stop.label} ⚡`); }
-    });
-    return btn;
-  }
-
-  function makeChestElement(stop, state, cx, cy) {
-    const chestDiv = document.createElement("div");
-    chestDiv.className = `chest-node ${state === "done" ? "done-chest" : (state === "available" ? "available-chest" : "locked-chest")}`;
-    chestDiv.style.left = `${cx}px`;
-    chestDiv.style.top = `${cy}px`;
-    chestDiv.style.width = `${currentSizes.chestWidth}px`;
-    
-    chestDiv.innerHTML = `
-      <div class="chest-graphic" style="height: ${currentSizes.chestHeight}px">
-        <div class="chest-lid" style="width: ${currentSizes.chestWidth - 6}px; height: ${currentSizes.lidHeight}px"></div>
-        <div class="chest-body" style="width: ${currentSizes.chestWidth - 2}px; height: ${currentSizes.bodyHeight}px">
-          <div class="chest-lock" style="width: ${Math.floor(currentSizes.coinSize * 0.22)}px; height: ${Math.floor(currentSizes.coinSize * 0.22)}px"></div>
-        </div>
+    <div class="topbar-stats">
+      <div class="stat-pill xp">
+        <span id="xp-val">0</span> XP
       </div>
-      <div class="chest-label">${stop.label}</div>
-    `;
-    if (state === "available") {
-      const bubble = document.createElement("div");
-      bubble.className = "start-bubble";
-      bubble.textContent = "🔓 OPEN";
-      bubble.style.top = "-48px";
-      chestDiv.appendChild(bubble);
-    }
-    chestDiv.addEventListener("click", () => {
-      if (state === "locked") { pixelShake(chestDiv); return; }
-      if (state === "available" && !userData.progress[currentLang].includes(stop.id)) {
-        userData.progress[currentLang].push(stop.id);
-        userData.xp += 150;
-        document.getElementById("xp-val").innerText = userData.xp;
-        renderPixelJourney();
-      } else { alert("🏆 CHEST (pixel treasure) +150 XP!"); }
-    });
-    return chestDiv;
-  }
 
-  function pixelShake(el) {
-    let i = 0;
-    const interval = setInterval(() => {
-      const offset = (i % 2 === 0) ? 5 : -5;
-      el.style.transform = `translate(-50%, -50%) translateX(${offset}px)`;
-      i++;
-      if (i > 7) { clearInterval(interval); el.style.transform = ""; }
-    }, 40);
-  }
+      <div class="stat-pill fire">
+        <span id="streak-val">3</span> streak
+      </div>
 
-  function renderPixelJourney() {
-    // Refresh sizes based on current window width
-    currentSizes = getResponsiveSize();
-    updateLayout();
-    
-    const allStops = getAllStops();
-    const completed = userData.progress[currentLang] || [];
-    const states = computeStates(completed);
-    const positions = computePositions(allStops);
-    const maxX = Math.max(...positions.map(p => p.cx)) + currentSizes.coinSize + 100;
-    const maxY = Math.max(...positions.map(p => p.cy)) + currentSizes.coinSize + 100;
-    const canvas = document.getElementById("pathCanvas");
-    const svg = document.getElementById("pathSvg");
-    while(canvas.children.length > 1) { if(canvas.lastChild !== svg) canvas.removeChild(canvas.lastChild); else break; }
-    canvas.style.width = `${maxX}px`;
-    canvas.style.height = `${maxY}px`;
-    svg.setAttribute("viewBox", `0 0 ${maxX} ${maxY}`);
-    svg.style.width = `${maxX}px`;
-    svg.style.height = `${maxY}px`;
-    drawConnectors(svg, positions, states, allStops);
-    
-    let stopIdx = 0;
-    COURSE_DATA[currentLang].forEach(section => {
-      if (positions[stopIdx]) {
-        const secDiv = document.createElement("div");
-        secDiv.className = "section-strip";
-        secDiv.style.left = `${positions[stopIdx].cx - 45}px`;
-        secDiv.style.top = `${positions[stopIdx].cy - currentSizes.coinSize - 15}px`;
-        secDiv.innerHTML = `${section.icon} ${section.title}`;
-        canvas.appendChild(secDiv);
+      <div
+        class="nav-avatar"
+        id="nav-avatar"
+      ></div>
+
+      <select
+        id="langSelect"
+        class="lang-select"
+      >
+        <option value="html">HTML</option>
+        <option value="python">PYTHON</option>
+        <option value="java">JAVA</option>
+      </select>
+
+      <button
+        class="logout-btn"
+        id="logoutBtn"
+      >
+        LOGOUT
+      </button>
+    </div>
+  </nav>
+
+  <div class="welcome-card">
+    <div
+      class="welcome-avatar"
+      id="welcomeAvatar"
+    ></div>
+
+    <div>
+      <div
+        class="welcome-name"
+        id="welcomeName"
+      >
+        WELCOME, CODER
+      </div>
+
+      <div class="welcome-sub">
+        ► BEGIN YOUR JOURNEY... ◄
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="path-scroll"
+    id="pathScroll"
+  >
+    <div
+      class="path-canvas"
+      id="pathCanvas"
+    >
+      <svg
+        class="path-svg"
+        id="pathSvg"
+      ></svg>
+    </div>
+  </div>
+
+  <script type="module">
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
+
+    import {
+      getFirestore,
+      doc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZFMjYBeptcSflFOtRMMO7WKFJ21xwwrk",
+      authDomain: "expert-parakeet.firebaseapp.com",
+      projectId: "expert-parakeet",
+      storageBucket: "expert-parakeet.appspot.com",
+      messagingSenderId: "488940113425",
+      appId: "1:488940113425:web:79f9e491bb89ba08abebb0"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    document
+      .getElementById("logoutBtn")
+      .addEventListener("click", async () => {
+        await signOut(auth);
+        window.location.href = "index.html";
+      });
+
+    document.body.style.visibility = "hidden";
+
+    const COURSE_DATA = {
+      html: [
+        {
+          title: "BEGINNER",
+          stops: [
+            {
+              id: "html_beg_files",
+              type: "coin",
+              label: "FILE SETUP"
+            },
+            {
+              id: "html_beg_basic",
+              type: "coin",
+              label: "BASIC ELEMENTS"
+            },
+            {
+              id: "html_beg_ids",
+              type: "coin",
+              label: "IDS"
+            },
+            {
+              id: "html_beg_classes",
+              type: "coin",
+              label: "CLASSES"
+            },
+            {
+              id: "html_beg_links",
+              type: "coin",
+              label: "LINKS"
+            },
+            {
+              id: "html_beg_img",
+              type: "coin",
+              label: "IMAGES"
+            },
+            {
+              id: "html_beg_comments",
+              type: "coin",
+              label: "COMMENTS"
+            },
+            {
+              id: "html_beg_divs",
+              type: "coin",
+              label: "DIVS"
+            },
+            {
+              id: "html_beg_layout",
+              type: "coin",
+              label: "LAYOUT"
+            },
+            {
+              id: "html_beg_css",
+              type: "coin",
+              label: "CSS"
+            },
+            {
+              id: "html_beg_buttons",
+              type: "coin",
+              label: "BUTTONS"
+            },
+            {
+              id: "html_beg_iframes",
+              type: "coin",
+              label: "IFRAMES"
+            },
+            {
+              id: "html_beg_tables",
+              type: "coin",
+              label: "TABLES"
+            },
+            {
+              id: "html_chest",
+              type: "chest",
+              label: "CHEST"
+            }
+          ]
+        },
+
+        {
+          title: "INTERMEDIATE",
+          stops: [
+            {
+              id: "html_in_files",
+              type: "coin",
+              label: "FILE SETUP"
+            },
+            {
+              id: "html_in_basic",
+              type: "coin",
+              label: "BASIC ELEMENTS"
+            },
+            {
+              id: "html_in_ids",
+              type: "coin",
+              label: "IDS"
+            },
+            {
+              id: "html_in_ids",
+              type: "coin",
+              label: "CLASSES"
+            },
+            {
+              id: "html_in_links",
+              type: "coin",
+              label: "LINKS"
+            },
+            {
+              id: "html_in_img",
+              type: "coin",
+              label: "IMAGES"
+            },
+            {
+              id: "html_in_comments",
+              type: "coin",
+              label: "COMMENTS"
+            },
+            {
+              id: "html_in_divs",
+              type: "coin",
+              label: "DIVS"
+            },
+            {
+              id: "html_beg_layout",
+              type: "coin",
+              label: "LAYOUT"
+            },
+            {
+              id: "html_in_css",
+              type: "coin",
+              label: "CSS"
+            },
+            {
+              id: "html_in_buttons",
+              type: "coin",
+              label: "BUTTONS"
+            },
+            {
+              id: "html_in_iframes",
+              type: "coin",
+              label: "IFRAMES"
+            },
+            {
+              id: "html_in_tables",
+              type: "coin",
+              label: "TABLES"
+            },
+            {
+              id: "html_chest2",
+              type: "chest",
+              label: "CHEST"
+            }
+          ]
+        },
+
+        {
+          title: "ADVANCED",
+          stops: [
+            {
+              id: "html_adv_files",
+              type: "coin",
+              label: "FILE SETUP"
+            },
+            {
+              id: "html_adv_basic",
+              type: "coin",
+              label: "BASIC ELEMENTS"
+            },
+            {
+              id: "html_adv_ids",
+              type: "coin",
+              label: "IDS"
+            },
+            {
+              id: "html_adv_ids",
+              type: "coin",
+              label: "CLASSES"
+            },
+            {
+              id: "html_adv_links",
+              type: "coin",
+              label: "LINKS"
+            },
+            {
+              id: "html_adv_img",
+              type: "coin",
+              label: "IMAGES"
+            },
+            {
+              id: "html_adv_comments",
+              type: "coin",
+              label: "COMMENTS"
+            },
+            {
+              id: "html_adv_divs",
+              type: "coin",
+              label: "DIVS"
+            },
+            {
+              id: "html_adv_layout",
+              type: "coin",
+              label: "LAYOUT"
+            },
+            {
+              id: "html_adv_css",
+              type: "coin",
+              label: "CSS"
+            },
+            {
+              id: "html_adv_buttons",
+              type: "coin",
+              label: "BUTTONS"
+            },
+            {
+              id: "html_adv_iframes",
+              type: "coin",
+              label: "IFRAMES"
+            },
+            {
+              id: "html_adv_tables",
+              type: "coin",
+              label: "TABLES"
+            },
+            {
+              id: "html_master",
+              type: "chest",
+              label: "MASTER"
+            }
+          ]
+        }
+      ],
+
+      python: [
+        {
+          title: "BASICS",
+          stops: [
+            {
+              id: "py_syntax",
+              type: "coin",
+              label: "SYNTAX"
+            },
+            {
+              id: "py_vars",
+              type: "coin",
+              label: "VARS"
+            },
+            {
+              id: "py_loops",
+              type: "coin",
+              label: "LOOPS"
+            },
+            {
+              id: "py_chest",
+              type: "chest",
+              label: "CHEST"
+            }
+          ]
+        },
+
+        {
+          title: "DATA",
+          stops: [
+            {
+              id: "py_lists",
+              type: "coin",
+              label: "LISTS"
+            },
+            {
+              id: "py_dicts",
+              type: "coin",
+              label: "DICTS"
+            },
+            {
+              id: "py_funcs",
+              type: "coin",
+              label: "FUNCS"
+            },
+            {
+              id: "py_chest2",
+              type: "chest",
+              label: "CHEST"
+            }
+          ]
+        },
+
+        {
+          title: "ADV",
+          stops: [
+            {
+              id: "py_oop",
+              type: "coin",
+              label: "OOP"
+            },
+            {
+              id: "py_files",
+              type: "coin",
+              label: "FILES"
+            },
+            {
+              id: "py_libs",
+              type: "coin",
+              label: "LIBS"
+            },
+            {
+              id: "py_master",
+              type: "chest",
+              label: "MASTER"
+            }
+          ]
+        }
+      ],
+
+      java: [
+        {
+          title: "BEGINNER",
+          stops: [
+            {
+              id: "java_syntax",
+              type: "coin",
+              label: "BASIC SYNTAX"
+            },
+            {
+              id: "java_vars",
+              type: "coin",
+              label: "CONDITIONALS"
+            },
+            {
+              id: "java_arrays",
+              type: "coin",
+              label: "ARRAYS"
+            },
+            {
+              id: "java_loops",
+              type: "coin",
+              label: "LOOPS"
+            },
+            {
+              id: "java_io",
+              type: "coin",
+              label: "INPUT/OUTPUT"
+            },
+            {
+              id: "java_functions",
+              type: "coin",
+              label: "FUNCTIONS"
+            },
+            {
+              id: "java_el_sorts",
+              type: "coin",
+              label: "SORTS"
+            },
+            {
+              id: "java_el_oop",
+              type: "coin",
+              label: "OOP"
+            },
+            {
+              id: "java_chest",
+              type: "chest",
+              label: "CHEST"
+            }
+          ]
+        },
+
+        {
+          title: "INTERMEDIATE",
+          stops: [
+            {
+              id: "java_in_oop",
+              type: "coin",
+              label: "OOP"
+            },
+            {
+              id: "java_stacks_queues",
+              type: "coin",
+              label: "STACKS & QUEUES"
+            },
+            {
+              id: "java_linked_lists",
+              type: "coin",
+              label: "LINKED LISTS"
+            },
+            {
+              id: "java_in_hashmaps",
+              type: "coin",
+              label: "HASHMAPS"
+            },
+            {
+              id: "java_chest2",
+              type: "chest",
+              label: "CHEST"
+            }
+          ]
+        },
+
+        {
+          title: "ADVANCED",
+          stops: [
+            {
+              id: "java_bst",
+              type: "coin",
+              label: "BST"
+            },
+            {
+              id: "java_priority_queues",
+              type: "coin",
+              label: "PRIORITY QUEUES"
+            },
+            {
+              id: "java_graphs",
+              type: "coin",
+              label: "GRAPHS"
+            },
+            {
+              id: "java_adv_oop",
+              type: "coin",
+              label: "OOP"
+            },
+            {
+              id: "java_master",
+              type: "chest",
+              label: "MASTER"
+            }
+          ]
+        }
+      ]
+    };
+
+    let currentLang = "html";
+
+    let userData = {
+      name: "PIXEL HERO",
+      avatar: "",
+      xp: 0,
+      streak: 0,
+      progress: {
+        html: [],
+        python: [],
+        java: []
       }
-      stopIdx += section.stops.length;
-    });
-    
-    let mascotPlaced = false;
-    allStops.forEach((stop, i) => {
-      const { cx, cy } = positions[i];
-      const state = states[stop.id];
-      let node;
-      if (stop.type === "chest") node = makeChestElement(stop, state, cx, cy);
-      else node = makeCoinElement(stop, state, cx, cy);
-      canvas.appendChild(node);
-      if (state === "available" && !mascotPlaced) {
-        const mascot = document.createElement("div");
-        mascot.className = "mascot";
-        mascot.style.fontSize = `${currentSizes.mascotSize}px`;
-        mascot.textContent = userData.avatar;
-        const side = layout.colW * 0.65;
-        mascot.style.left = `${cx + side}px`;
-        mascot.style.top = `${cy - 8}px`;
-        canvas.appendChild(mascot);
-        mascotPlaced = true;
+    };
+
+    function getResponsiveSize() {
+      const width = window.innerWidth;
+
+      const coinSize = Math.min(
+        96,
+        Math.max(
+          52,
+          Math.floor(width / 20) + 38
+        )
+      );
+
+      return {
+        coinSize,
+        chestWidth: coinSize + 8,
+        chestHeight: coinSize + 12,
+        mascotSize: Math.min(
+          80,
+          Math.max(
+            44,
+            Math.floor(coinSize * 0.9)
+          )
+        ),
+        lidHeight: Math.floor(coinSize * 0.38),
+        bodyHeight: Math.floor(coinSize * 0.58)
+      };
+    }
+
+    let layout = {
+      colW: 170,
+      rowH: 190,
+      padX: 130,
+      padY: 150,
+      nodesPerRow: 4
+    };
+
+    let currentSizes = getResponsiveSize();
+
+    function updateLayout() {
+      const width = window.innerWidth;
+
+      const nodesPerRow =
+        width < 700
+          ? 3
+          : width < 1100
+            ? 4
+            : 5;
+
+      const scale = Math.min(
+        1.2,
+        Math.max(
+          0.7,
+          width / 1200
+        )
+      );
+
+      const coinSize = currentSizes.coinSize;
+
+      layout = {
+        colW: (150 + coinSize * 0.6) * scale,
+        rowH: (160 + coinSize * 0.5) * scale,
+        padX: (80 + coinSize * 0.4) * scale,
+        padY: (110 + coinSize * 0.3) * scale,
+        nodesPerRow
+      };
+    }
+
+    function getAllStops() {
+      return COURSE_DATA[currentLang]
+        .flatMap(section => section.stops);
+    }
+
+    function computePositions(allStops) {
+      const positions = [];
+
+      const {
+        nodesPerRow,
+        colW,
+        rowH,
+        padX,
+        padY
+      } = layout;
+
+      allStops.forEach((_, index) => {
+        const row = Math.floor(
+          index / nodesPerRow
+        );
+
+        const colIn =
+          index % nodesPerRow;
+
+        const leftToRight =
+          row % 2 === 0;
+
+        const col = leftToRight
+          ? colIn
+          : nodesPerRow - 1 - colIn;
+
+        const waveY =
+          (index % 6) * 5 - 12;
+
+        const cx =
+          padX + col * colW;
+
+        const cy =
+          padY + row * rowH + waveY;
+
+        positions.push({
+          cx,
+          cy
+        });
+      });
+
+      return positions;
+    }
+
+    function computeStates(completedIds) {
+      const stops = getAllStops();
+      const doneSet = new Set(completedIds || []);
+
+      let availableGiven = false;
+      const states = {};
+
+      for (const stop of stops) {
+        if (doneSet.has(stop.id)) {
+          states[stop.id] = "done";
+        } else if (!availableGiven) {
+          states[stop.id] = "available";
+          availableGiven = true;
+        } else {
+          states[stop.id] = "locked";
+        }
       }
-    });
-    
-    const lastPos = positions[positions.length-1];
-    if (lastPos) {
-      const trophy = document.createElement("div");
-      trophy.className = "trophy-node";
-      trophy.style.left = `${lastPos.cx + currentSizes.coinSize + 30}px`;
-      trophy.style.top = `${lastPos.cy}px`;
-      trophy.innerHTML = `<div class="trophy-coin" style="width: ${currentSizes.coinSize + 10}px; height: ${currentSizes.coinSize + 10}px; font-size: ${currentSizes.iconFontSize + 8}px">🏆</div><div class="trophy-label">GOAL</div>`;
-      canvas.appendChild(trophy);
+
+      return states;
     }
-    
-    const firstAvail = allStops.findIndex(s => states[s.id] === "available");
-    if (firstAvail >= 0 && positions[firstAvail]) {
-      setTimeout(() => {
-        const scrollDiv = document.getElementById("pathScroll");
-        const targetX = positions[firstAvail].cx - (scrollDiv.clientWidth / 2);
-        scrollDiv.scrollTo({ left: Math.max(0, targetX), behavior: "smooth" });
-      }, 100);
+
+    function drawConnectors(
+      svg,
+      positions,
+      states,
+      allStops
+    ) {
+      svg.innerHTML = "";
+
+      for (
+        let i = 1;
+        i < positions.length;
+        i++
+      ) {
+        const a = positions[i - 1];
+        const b = positions[i];
+
+        const prevState =
+          states[allStops[i - 1].id];
+
+        const color =
+          prevState === "done"
+            ? "#ffbc5e"
+            : "#4a4a6a";
+
+        const width =
+          prevState === "done"
+            ? Math.max(
+                4,
+                Math.floor(
+                  currentSizes.coinSize / 18
+                )
+              )
+            : Math.max(
+                3,
+                Math.floor(
+                  currentSizes.coinSize / 22
+                )
+              );
+
+        const cp1x =
+          a.cx +
+          (b.cx - a.cx) * 0.4;
+
+        const cp1y = a.cy;
+
+        const cp2x =
+          b.cx -
+          (b.cx - a.cx) * 0.4;
+
+        const cp2y = b.cy;
+
+        const pathData =
+          `M ${a.cx} ${a.cy} ` +
+          `C ${cp1x} ${cp1y}, ` +
+          `${cp2x} ${cp2y}, ` +
+          `${b.cx} ${b.cy}`;
+
+        const path =
+          document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "path"
+          );
+
+        path.setAttribute(
+          "d",
+          pathData
+        );
+
+        path.setAttribute(
+          "stroke",
+          color
+        );
+
+        path.setAttribute(
+          "stroke-width",
+          width
+        );
+
+        path.setAttribute(
+          "fill",
+          "none"
+        );
+
+        path.setAttribute(
+          "stroke-linecap",
+          "square"
+        );
+
+        if (prevState !== "done") {
+          path.setAttribute(
+            "stroke-dasharray",
+            "10 8"
+          );
+        }
+
+        svg.appendChild(path);
+      }
     }
-  }
 
-  function setLanguage(lang) {
-    currentLang = lang;
-    document.body.setAttribute("data-lang", lang);
-    renderPixelJourney();
-  }
+    function makeCoinElement(
+      stop,
+      state,
+      cx,
+      cy
+    ) {
+      const button =
+        document.createElement("button");
 
-  document.getElementById("langSelect").addEventListener("change", (e) => setLanguage(e.target.value));
+      const size =
+        currentSizes.coinSize;
 
-  let resizeTimeout;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      currentSizes = getResponsiveSize();
+      button.className =
+        `coin ${state}`;
+
+      button.style.width =
+        `${size}px`;
+
+      button.style.height =
+        `${size}px`;
+
+      button.style.left =
+        `${cx}px`;
+
+      button.style.top =
+        `${cy}px`;
+
+      button.dataset.id =
+        stop.id;
+
+      const label =
+        document.createElement("div");
+
+      label.className =
+        "coin-label";
+
+      label.textContent =
+        stop.label;
+
+      button.appendChild(label);
+
+      if (state === "done") {
+        const check =
+          document.createElement("div");
+
+        check.className =
+          "check-badge";
+
+        check.textContent =
+          "✓";
+
+        button.appendChild(check);
+      }
+
+      if (state === "available") {
+        const bubble =
+          document.createElement("div");
+
+        bubble.className =
+          "start-bubble";
+
+        bubble.textContent =
+          "► START";
+
+        button.appendChild(bubble);
+      }
+
+      button.addEventListener(
+        "click",
+        event => {
+          event.stopPropagation();
+
+          if (state === "locked") {
+            pixelShake(button);
+            return;
+          }
+
+          if (
+            state === "available" &&
+            !userData.progress[currentLang]
+              .includes(stop.id)
+          ) {
+            userData.progress[currentLang]
+              .push(stop.id);
+
+            userData.xp += 60;
+
+            document
+              .getElementById("xp-val")
+              .innerText = userData.xp;
+
+            renderPixelJourney();
+          } else {
+            alert(
+              `MISSION: ${stop.label}`
+            );
+          }
+        }
+      );
+
+      return button;
+    }
+
+    function makeChestElement(
+      stop,
+      state,
+      cx,
+      cy
+    ) {
+      const chest =
+        document.createElement("div");
+
+      const stateClass =
+        state === "done"
+          ? "done-chest"
+          : state === "available"
+            ? "available-chest"
+            : "locked-chest";
+
+      chest.className =
+        `chest-node ${stateClass}`;
+
+      chest.style.left =
+        `${cx}px`;
+
+      chest.style.top =
+        `${cy}px`;
+
+      chest.style.width =
+        `${currentSizes.chestWidth}px`;
+
+      chest.innerHTML = `
+        <div
+          class="chest-graphic"
+          style="
+            height:
+            ${currentSizes.chestHeight}px
+          "
+        >
+          <div
+            class="chest-lid"
+            style="
+              width:
+              ${currentSizes.chestWidth - 6}px;
+              height:
+              ${currentSizes.lidHeight}px
+            "
+          ></div>
+
+          <div
+            class="chest-body"
+            style="
+              width:
+              ${currentSizes.chestWidth - 2}px;
+              height:
+              ${currentSizes.bodyHeight}px
+            "
+          >
+            <div
+              class="chest-lock"
+              style="
+                width:
+                ${Math.floor(
+                  currentSizes.coinSize * 0.22
+                )}px;
+                height:
+                ${Math.floor(
+                  currentSizes.coinSize * 0.22
+                )}px
+              "
+            ></div>
+          </div>
+        </div>
+
+        <div class="chest-label">
+          ${stop.label}
+        </div>
+      `;
+
+      if (state === "available") {
+        const bubble =
+          document.createElement("div");
+
+        bubble.className =
+          "start-bubble";
+
+        bubble.textContent =
+          "OPEN";
+
+        bubble.style.top =
+          "-48px";
+
+        chest.appendChild(bubble);
+      }
+
+      chest.addEventListener(
+        "click",
+        () => {
+          if (state === "locked") {
+            pixelShake(chest);
+            return;
+          }
+
+          if (
+            state === "available" &&
+            !userData.progress[currentLang]
+              .includes(stop.id)
+          ) {
+            userData.progress[currentLang]
+              .push(stop.id);
+
+            userData.xp += 150;
+
+            document
+              .getElementById("xp-val")
+              .innerText = userData.xp;
+
+            renderPixelJourney();
+          } else {
+            alert(
+              "CHEST (pixel treasure) +150 XP!"
+            );
+          }
+        }
+      );
+
+      return chest;
+    }
+
+    function pixelShake(element) {
+      let i = 0;
+
+      const interval =
+        setInterval(() => {
+          const offset =
+            i % 2 === 0
+              ? 5
+              : -5;
+
+          element.style.transform =
+            `translate(-50%, -50%) ` +
+            `translateX(${offset}px)`;
+
+          i++;
+
+          if (i > 7) {
+            clearInterval(interval);
+            element.style.transform = "";
+          }
+        }, 40);
+    }
+
+    function renderPixelJourney() {
+      currentSizes =
+        getResponsiveSize();
+
       updateLayout();
+
+      const allStops =
+        getAllStops();
+
+      const completed =
+        userData.progress[currentLang] || [];
+
+      const states =
+        computeStates(completed);
+
+      const positions =
+        computePositions(allStops);
+
+      const maxX =
+        Math.max(
+          ...positions.map(
+            position => position.cx
+          )
+        ) +
+        currentSizes.coinSize +
+        100;
+
+      const maxY =
+        Math.max(
+          ...positions.map(
+            position => position.cy
+          )
+        ) +
+        currentSizes.coinSize +
+        100;
+
+      const canvas =
+        document.getElementById(
+          "pathCanvas"
+        );
+
+      const svg =
+        document.getElementById(
+          "pathSvg"
+        );
+
+      while (
+        canvas.children.length > 1
+      ) {
+        if (
+          canvas.lastChild !== svg
+        ) {
+          canvas.removeChild(
+            canvas.lastChild
+          );
+        } else {
+          break;
+        }
+      }
+
+      canvas.style.width =
+        `${maxX}px`;
+
+      canvas.style.height =
+        `${maxY}px`;
+
+      svg.setAttribute(
+        "viewBox",
+        `0 0 ${maxX} ${maxY}`
+      );
+
+      svg.style.width =
+        `${maxX}px`;
+
+      svg.style.height =
+        `${maxY}px`;
+
+      drawConnectors(
+        svg,
+        positions,
+        states,
+        allStops
+      );
+
+      let stopIndex = 0;
+
+      COURSE_DATA[currentLang]
+        .forEach(section => {
+          if (positions[stopIndex]) {
+            const sectionLabel =
+              document.createElement(
+                "div"
+              );
+
+            sectionLabel.className =
+              "section-strip";
+
+            sectionLabel.style.left =
+              `${
+                positions[stopIndex].cx -
+                45
+              }px`;
+
+            sectionLabel.style.top =
+              `${
+                positions[stopIndex].cy -
+                currentSizes.coinSize -
+                15
+              }px`;
+
+            sectionLabel.textContent =
+              section.title;
+
+            canvas.appendChild(
+              sectionLabel
+            );
+          }
+
+          stopIndex +=
+            section.stops.length;
+        });
+
+      let mascotPlaced = false;
+
+      allStops.forEach(
+        (stop, index) => {
+          const {
+            cx,
+            cy
+          } = positions[index];
+
+          const state =
+            states[stop.id];
+
+          const node =
+            stop.type === "chest"
+              ? makeChestElement(
+                  stop,
+                  state,
+                  cx,
+                  cy
+                )
+              : makeCoinElement(
+                  stop,
+                  state,
+                  cx,
+                  cy
+                );
+
+          canvas.appendChild(node);
+
+          if (
+            state === "available" &&
+            !mascotPlaced
+          ) {
+            const mascot =
+              document.createElement(
+                "div"
+              );
+
+            mascot.className =
+              "mascot";
+
+            mascot.style.fontSize =
+              `${
+                currentSizes.mascotSize
+              }px`;
+
+            mascot.textContent =
+              userData.avatar;
+
+            const side =
+              layout.colW * 0.65;
+
+            mascot.style.left =
+              `${cx + side}px`;
+
+            mascot.style.top =
+              `${cy - 8}px`;
+
+            canvas.appendChild(
+              mascot
+            );
+
+            mascotPlaced = true;
+          }
+        }
+      );
+
+      const lastPosition =
+        positions[
+          positions.length - 1
+        ];
+
+      if (lastPosition) {
+        const trophy =
+          document.createElement(
+            "div"
+          );
+
+        trophy.className =
+          "trophy-node";
+
+        trophy.style.left =
+          `${
+            lastPosition.cx +
+            currentSizes.coinSize +
+            30
+          }px`;
+
+        trophy.style.top =
+          `${lastPosition.cy}px`;
+
+        trophy.innerHTML = `
+          <div
+            class="trophy-coin"
+            style="
+              width:
+              ${currentSizes.coinSize + 10}px;
+              height:
+              ${currentSizes.coinSize + 10}px
+            "
+          ></div>
+
+          <div class="trophy-label">
+            GOAL
+          </div>
+        `;
+
+        canvas.appendChild(
+          trophy
+        );
+      }
+
+      const firstAvailable =
+        allStops.findIndex(
+          stop =>
+            states[stop.id] ===
+            "available"
+        );
+
+      if (
+        firstAvailable >= 0 &&
+        positions[firstAvailable]
+      ) {
+        setTimeout(() => {
+          const scroll =
+            document.getElementById(
+              "pathScroll"
+            );
+
+          const targetX =
+            positions[firstAvailable].cx -
+            scroll.clientWidth / 2;
+
+          scroll.scrollTo({
+            left: Math.max(
+              0,
+              targetX
+            ),
+            behavior: "smooth"
+          });
+        }, 100);
+      }
+    }
+
+    function setLanguage(language) {
+      currentLang = language;
+
+      document.body.setAttribute(
+        "data-lang",
+        language
+      );
+
       renderPixelJourney();
-    }, 100);
-  });
-
-  // ── Firebase auth boot ────────────────────────────────────────────────────
-  // Wait for Firebase to confirm login state, then show the page.
-  // If not logged in → redirect to login. No flash, no double render.
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      window.location.href = "index.html";
-      return;
     }
 
-    // Load user data from Firestore
-    const snap = await getDoc(doc(db, "users", user.uid));
-    if (snap.exists()) {
-      const data = snap.data();
-      userData.name     = data.name     || "PIXEL HERO";
-      userData.avatar   = data.avatar   || "🦊";
-      userData.xp       = data.xp       || 0;
-      userData.streak   = data.streak   || 0;
-      userData.progress = data.progress || { html: [], python: [], java: [] };
-    }
+    document
+      .getElementById("langSelect")
+      .addEventListener(
+        "change",
+        event => {
+          setLanguage(
+            event.target.value
+          );
+        }
+      );
 
-    // Update UI with real user data
-    document.getElementById("xp-val").innerText        = userData.xp;
-    document.getElementById("streak-val").innerText    = userData.streak;
-    document.getElementById("nav-avatar").innerText    = userData.avatar;
-    document.getElementById("welcomeAvatar").innerText = userData.avatar;
-    document.getElementById("welcomeName").innerHTML   = `👾 ${userData.name} 👾`;
+    let resizeTimeout;
 
-    // Render the path with real progress
-    updateLayout();
-    renderPixelJourney();
+    window.addEventListener(
+      "resize",
+      () => {
+        clearTimeout(
+          resizeTimeout
+        );
 
-    // Show the page now that everything is ready
-    document.body.style.visibility = "visible";
-  });
-</script>
+        resizeTimeout =
+          setTimeout(() => {
+            currentSizes =
+              getResponsiveSize();
+
+            updateLayout();
+            renderPixelJourney();
+          }, 100);
+      }
+    );
+
+    onAuthStateChanged(
+      auth,
+      async user => {
+        if (!user) {
+          window.location.href =
+            "index.html";
+
+          return;
+        }
+
+        const snapshot =
+          await getDoc(
+            doc(
+              db,
+              "users",
+              user.uid
+            )
+          );
+
+        if (snapshot.exists()) {
+          const data =
+            snapshot.data();
+
+          userData.name =
+            data.name ||
+            "PIXEL HERO";
+
+          userData.avatar =
+            data.avatar || "";
+
+          userData.xp =
+            data.xp || 0;
+
+          userData.streak =
+            data.streak || 0;
+
+          userData.progress =
+            data.progress || {
+              html: [],
+              python: [],
+              java: []
+            };
+        }
+
+        document
+          .getElementById("xp-val")
+          .innerText =
+            userData.xp;
+
+        document
+          .getElementById("streak-val")
+          .innerText =
+            userData.streak;
+
+        document
+          .getElementById("nav-avatar")
+          .innerText =
+            userData.avatar;
+
+        document
+          .getElementById("welcomeAvatar")
+          .innerText =
+            userData.avatar;
+
+        document
+          .getElementById("welcomeName")
+          .innerText =
+            userData.name;
+
+        updateLayout();
+        renderPixelJourney();
+
+        document.body.style.visibility =
+          "visible";
+      }
+    );
+  </script>
 </body>
 </html>

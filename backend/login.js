@@ -1,6 +1,5 @@
 import { signup, login, observeAuth } from "./auth.js";
 
-// SIGN UP
 document.getElementById("signupBtn").onclick = async () => {
 
   const suEmail = document.getElementById("suEmail");
@@ -18,17 +17,15 @@ document.getElementById("signupBtn").onclick = async () => {
     window.location.href = "home.html";
   } catch (err) {
     if (err.code === "auth/email-already-in-use") {
-      showError("⚠️ Account already exists. Try logging in.");
+      showError("Account already exists. Try logging in.");
     } else if (err.code === "auth/weak-password") {
-      showError("⚠️ Password should be at least 6 characters.");
+      showError("Password should be at least 6 characters.");
     } else {
-      showError("⚠️ Something went wrong. Try again.");
+      showError("Something went wrong. Try again.");
     }
   }
 };
 
-
-// LOGIN
 document.getElementById("loginBtn").onclick = async () => {
   const liEmail = document.getElementById("liEmail");
   const liPassword = document.getElementById("liPassword");
@@ -41,17 +38,15 @@ document.getElementById("loginBtn").onclick = async () => {
     window.location.href = "home.html";
   } catch (err) {
     if (err.code === "auth/user-not-found") {
-      showError("⚠️ No account found.");
+      showError("No account found.");
     } else if (err.code === "auth/wrong-password") {
-      showError("⚠️ Incorrect password.");
+      showError("Incorrect password.");
     } else {
-      showError("⚠️ Login failed.");
+      showError("Login failed.");
     }
   }
 };
 
-
-// if already logged in → go to home
 observeAuth((user) => {
   if (user) {
     window.location.href = "home.html";

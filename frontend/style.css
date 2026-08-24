@@ -11,7 +11,6 @@ body {
   padding-top: 60px;
 }
 
-/* Outer container */
 .game-container {
   width: 460px;
   background: rgba(20, 10, 50, 0.85);
@@ -20,7 +19,6 @@ body {
   padding: 24px;
 }
 
-/* ── Pet section ── */
 .pet-section {
   display: flex;
   align-items: center;
@@ -74,7 +72,6 @@ body {
   color: rgba(0, 229, 255, 0.55);
 }
 
-/* ── Progress row ── */
 .progress-row {
   display: flex;
   justify-content: space-between;
@@ -93,7 +90,6 @@ body {
   text-shadow: 0 0 6px #7c4dff;
 }
 
-/* ── Type badge ── */
 .type-badge {
   display: inline-block;
   font-size: 7px;
@@ -102,11 +98,24 @@ body {
   border: 1px solid;
 }
 
-.type-badge.mc   { background: rgba(0, 100, 255, 0.12); border-color: #4488ff; color: #4488ff; }
-.type-badge.tf   { background: rgba(0, 229, 255, 0.10); border-color: #00e5ff; color: #00e5ff; }
-.type-badge.fill { background: rgba(124, 77, 255, 0.10); border-color: #7c4dff; color: #caa6ff; }
+.type-badge.mc {
+  background: rgba(0, 100, 255, 0.12);
+  border-color: #4488ff;
+  color: #4488ff;
+}
 
-/* ── Question box ── */
+.type-badge.tf {
+  background: rgba(0, 229, 255, 0.10);
+  border-color: #00e5ff;
+  color: #00e5ff;
+}
+
+.type-badge.fill {
+  background: rgba(124, 77, 255, 0.10);
+  border-color: #7c4dff;
+  color: #caa6ff;
+}
+
 .question-box {
   background: rgba(10, 15, 50, 0.8);
   border: 2px solid #7c4dff;
@@ -123,7 +132,6 @@ body {
   white-space: pre-line;
 }
 
-/* ── Result flash ── */
 .result-flash {
   display: none;
   text-align: center;
@@ -133,19 +141,35 @@ body {
   border: 1px solid;
 }
 
-.result-flash.correct { background: rgba(0, 229, 255, 0.08); border-color: #00e5ff; color: #00e5ff; }
-.result-flash.wrong   { background: rgba(255, 77, 255, 0.08); border-color: #ff4dff; color: #ff4dff; }
-.result-flash.show    { display: block; }
+.result-flash.correct {
+  background: rgba(0, 229, 255, 0.08);
+  border-color: #00e5ff;
+  color: #00e5ff;
+}
 
-/* ── Choice buttons grid ── */
+.result-flash.wrong {
+  background: rgba(255, 77, 255, 0.08);
+  border-color: #ff4dff;
+  color: #ff4dff;
+}
+
+.result-flash.show {
+  display: block;
+}
+
 .choices-grid {
   display: grid;
   gap: 10px;
   margin-bottom: 16px;
 }
 
-.mc-grid { grid-template-columns: 1fr 1fr; }
-.tf-grid { grid-template-columns: 1fr 1fr; }
+.mc-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.tf-grid {
+  grid-template-columns: 1fr 1fr;
+}
 
 .choice-btn {
   background: rgba(124, 77, 255, 0.1);
@@ -186,7 +210,6 @@ body {
   color: #ff4dff;
 }
 
-/* ── Fill in the blank ── */
 .fill-section {
   margin-bottom: 16px;
 }
@@ -220,7 +243,6 @@ body {
   color: rgba(0, 229, 255, 0.3);
 }
 
-/* ── Submit button ── */
 .submit-btn {
   width: 100%;
   background: linear-gradient(90deg, #7c4dff, #00e5ff);
@@ -240,9 +262,10 @@ body {
   box-shadow: 0 0 25px #00e5ff;
 }
 
-.hidden { display: none !important; }
+.hidden {
+  display: none !important;
+}
 
-/* Login page specific styles */
 .container {
   background: rgba(20, 10, 50, 0.85);
   border: 3px solid #7c4dff;
@@ -321,6 +344,7 @@ hr {
     transform: translateX(-50%) scale(0.8);
     opacity: 0;
   }
+
   to {
     transform: translateX(-50%) scale(1);
     opacity: 1;
@@ -328,13 +352,13 @@ hr {
 }
 
 .pet-sprite {
-  width: 100px;      /* or whatever size you want */
+  width: 100px;
   height: 100px;
-  overflow: hidden;  /* prevents overflow */
+  overflow: hidden;
 }
 
 .pet-sprite img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* keeps full image visible */
+  object-fit: contain;
 }
